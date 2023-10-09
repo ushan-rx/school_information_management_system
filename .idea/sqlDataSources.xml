@@ -3,9 +3,9 @@
   <component name="DdlMappings">
     <mapping uuid="491ba176-18c6-4354-9a9f-07ee93da7716" name="@localhost Mapping">
       <data-sources db="6626046f-ebfb-44d8-bdc4-f01fc9913ab3" ddl="9be0cf5c-0484-487e-ab35-84af2fc6aa02" />
-      <scope>
-        <node kind="schema" qname="school_system" />
-      </scope>
+    </mapping>
+    <mapping uuid="26f9cf45-7648-4776-96cf-3a452f57f2ce" name="User Data Source Mapping">
+      <data-sources db="492abb09-acf7-41e5-8521-d69767d8b35f" />
     </mapping>
   </component>
 </project>
