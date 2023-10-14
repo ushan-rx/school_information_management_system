@@ -6,8 +6,11 @@
 <%--include header--%>
 <c:import url="/WEB-INF/includes/header.jsp" />
 
-
 <body class="sidebar-mini layout-fixed layout-navbar-fixed">
+<%
+    response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+%>
+
 <div class="wrapper">
 <%--    include nav and sidebar  --%>
     <c:import url="/WEB-INF/includes/menu.jsp" />
@@ -33,21 +36,21 @@
                     <!-- ./col -->
                     <div class="col-lg-3 col-6 mx-5">
                         <!-- small box -->
-                        <div class="small-box bg-success">
+                        <div class="small-box bg-warning">
                             <div class="inner">
-                                <h3>53<sup style="font-size: 20px">%</sup></h3>
-                                <p>Bounce Rate</p>
+                                <h3>53<sup style="font-size: 20px"></sup></h3>
+                                <p>Upcomming Exams</p>
                             </div>
                             <div class="icon">
                                 <i class="ion ion-stats-bars"></i>
                             </div>
-                            <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                            <a href="viewExams" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
                     <!-- ./col -->
                     <div class="col-lg-3 col-6 mx-5">
                         <!-- small box -->
-                        <div class="small-box bg-warning">
+                        <div class="small-box bg-success">
                             <div class="inner">
                                 <h3>44</h3>
                                 <p>Registered Students</p>
@@ -55,21 +58,21 @@
                             <div class="icon">
                                 <i class="ion ion-person-add"></i>
                             </div>
-                            <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                            <a href="viewStudents" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
                     <!-- ./col -->
                     <div class="col-lg-3 col-6 mx-5">
                         <!-- small box -->
-                        <div class="small-box bg-danger">
+                        <div class="small-box bg-primary">
                             <div class="inner">
                                 <h3>65</h3>
-                                <p>Unique Visitors</p>
+                                <p>Teachers</p>
                             </div>
                             <div class="icon">
-                                <i class="ion ion-pie-graph"></i>
+                                <i class="ion ion-person-stalker"></i>
                             </div>
-                            <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                            <a href="viewStaff" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
                     <!-- ./col -->

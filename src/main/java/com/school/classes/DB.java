@@ -2,6 +2,7 @@ package com.school.classes;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class DB {
@@ -12,9 +13,16 @@ public class DB {
         if (connection == null){
             Class.forName("com.mysql.cj.jdbc.Driver");
             connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/school_system", "root", "1234");
-            System.out.println(connection);
         }
     }
 
+    public static ResultSet search(String sql) throws SQLException, ClassNotFoundException {
+        if(connection == null){
+            init_db();
+        }
+        return connection.createStatement().executeQuery(sql);
+    }
 
+
+    
 }
