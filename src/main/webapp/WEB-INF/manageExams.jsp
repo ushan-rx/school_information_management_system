@@ -13,6 +13,11 @@
 <c:import url="/WEB-INF/includes/header.jsp"/>
 
 <body class="sidebar-mini layout-fixed layout-navbar-fixed">
+
+<%
+    response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+%>
+
 <div class="wrapper">
     <%--    include nav and sidebar  --%>
     <c:import url="/WEB-INF/includes/menu.jsp"/>
@@ -50,7 +55,7 @@
                     </div>
                     <!-- /.card-header -->
                     <!-- form start -->
-                    <form>
+                    <form action="exam" method="post">
                         <div class="card-body">
                             <div class="form-group">
                                 <label>Exam Name</label>

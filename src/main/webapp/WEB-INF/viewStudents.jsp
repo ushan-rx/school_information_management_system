@@ -14,6 +14,11 @@
 
 
 <body class="sidebar-mini layout-fixed layout-navbar-fixed">
+
+<%
+    response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+%>
+
 <div class="wrapper">
     <%--    include nav and sidebar  --%>
     <c:import url="/WEB-INF/includes/menu.jsp"/>
@@ -60,7 +65,6 @@
                                 <option value="a">A</option>
                                 <option value="b">B</option>
                                 <option value="c">C</option>
-                                <option value="d">D</option>
                             </select>
                         </div>
                         <div class="col-md-2 mb-3 py-4">

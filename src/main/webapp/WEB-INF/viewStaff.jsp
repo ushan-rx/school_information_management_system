@@ -14,6 +14,11 @@
 
 
 <body class="sidebar-mini layout-fixed layout-navbar-fixed">
+
+<%
+    response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+%>
+
 <div class="wrapper">
     <%--    include nav and sidebar  --%>
     <c:import url="/WEB-INF/includes/menu.jsp"/>
