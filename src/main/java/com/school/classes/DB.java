@@ -23,6 +23,13 @@ public class DB {
         return connection.createStatement().executeQuery(sql);
     }
 
+    public static void iud(String query) throws SQLException, ClassNotFoundException {
+        if(connection == null){
+            init_db();
+        }
+        connection.createStatement().execute(query);
+    }
+
 
     
 }

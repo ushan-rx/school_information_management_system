@@ -27,6 +27,19 @@
   <link rel="stylesheet" href="<c:url value='/css/adminlte.min.css'/>">
 </head>
 <body class="hold-transition login-page">
+
+<%
+  if(request.getAttribute("status") != null && request.getAttribute("status").equals("fail"))
+    out.print("<div class= \"alert alert-danger alert-dismissible text-center fixed-top fade show\" role=\"alert\">\n" +
+            " Login Failed.Retry" +
+            "<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">\n" +
+            "    <span aria-hidden=\"true\">&times;</span>" +
+            "</div>");
+
+%>
+
+
+
 <div class="login-box">
   <!-- /.login-logo -->
   <div class="card card-outline card-primary">

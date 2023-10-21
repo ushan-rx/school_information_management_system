@@ -27,6 +27,7 @@ public class LoginController extends HttpServlet {
                 resp.sendRedirect("home");
             }
             else{
+                req.setAttribute("status", "fail");
                 req.getRequestDispatcher("index.jsp").forward(req, resp);
             }
         } catch (SQLException | ClassNotFoundException | NoSuchAlgorithmException e) {
