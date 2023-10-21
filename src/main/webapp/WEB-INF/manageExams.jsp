@@ -33,7 +33,7 @@
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="viewSubjects">View Exams</a></li>
+                            <li class="breadcrumb-item"><a href="viewExams">View Exams</a></li>
                             <li class="breadcrumb-item active">Manage Exams</li>
                         </ol>
                     </div>
