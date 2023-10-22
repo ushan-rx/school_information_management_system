@@ -175,7 +175,7 @@
         $(function () {
             //Date picker
             $('#reservationdate').datetimepicker({
-                format: 'L'
+                format: 'Y-M-D'
             });
         })
     </script>

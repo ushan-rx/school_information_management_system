@@ -55,34 +55,34 @@
                     </div>
                     <!-- /.card-header -->
                     <!-- form start -->
-                    <form action="exam" method="post">
+                    <form action="manageExams" method="post">
                         <div class="card-body">
                             <div class="form-group">
                                 <label>Exam Name</label>
-                                <input class="form-control" type="text" placeholder="">
+                                <input class="form-control" type="text" placeholder="" name="exName">
                             </div>
 
                             <div class="form-group">
                                 <label>Grade</label>
-                                <select class="form-control">
-                                    <option disabled="disabled" selected>Select</option>
-                                    <option>1</option>
-                                    <option>2</option>
-                                    <option>3</option>
-                                    <option>4</option>
-                                    <option>5</option>
+                                <select class="form-control" name="grade">
+                                    <option disabled="disabled" value="0" selected>Select</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
                                 </select>
                             </div>
 
                             <div class="form-group">
                                 <label>Subject</label>
-                                <select class="form-control">
-                                    <option disabled="disabled" selected>Select Subject</option>
-                                    <option>1</option>
-                                    <option>2</option>
-                                    <option>3</option>
-                                    <option>4</option>
-                                    <option>5</option>
+                                <select class="form-control" name="subject">
+                                    <option disabled="disabled" value="0" selected>Select Subject</option>
+                                    <option value="SB001">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="">5</option>
                                 </select>
                             </div>
 
@@ -90,7 +90,7 @@
                                 <label>Date of Exam:</label>
                                 <div class="input-group date" id="reservationdate" data-target-input="nearest">
                                     <input type="text" class="form-control datetimepicker-input"
-                                           data-target="#reservationdate"/>
+                                           data-target="#reservationdate" name="date"/>
                                     <div class="input-group-append" data-target="#reservationdate"
                                          data-toggle="datetimepicker">
                                         <div class="input-group-text"><i class="fa fa-calendar"></i></div>
@@ -101,7 +101,7 @@
                             <div class="form-group">
                                 <label>Time of exam:</label>
                                 <div class="input-group date" id="timepicker" data-target-input="nearest">
-                                    <input type="text" class="form-control datetimepicker-input" data-target="#timepicker">
+                                    <input type="text" class="form-control datetimepicker-input" data-target="#timepicker" name="time">
                                     <div class="input-group-append" data-target="#timepicker" data-toggle="datetimepicker">
                                         <div class="input-group-text"><i class="far fa-clock"></i></div>
                                     </div>
@@ -111,15 +111,20 @@
 
                             <div class="form-group">
                                 <label>Time Duration</label>
-                                <input class="form-control" type="text" placeholder="">
+                                <input class="form-control" type="text" placeholder="" name="duration">
+                            </div>
+
+                            <div class="form-group">
+                                <label>Total Marks</label>
+                                <input class="form-control" type="text" placeholder="" name="marks">
                             </div>
 
                             <div class="form-group">
                                 <label>Exam Method</label>
-                                <select class="form-control">
-                                    <option disabled="disabled" selected>Select Method</option>
-                                    <option>Online</option>
-                                    <option>Physical</option>
+                                <select class="form-control" name="method">
+                                    <option disabled="disabled" value="0" selected>Select Method</option>
+                                    <option value="O">Online</option>
+                                    <option value="P">Physical</option>
                                 </select>
                             </div>
 
@@ -132,21 +137,21 @@
                                 <div class="col-lg-8">
                                     <div class="form-group">
                                         <label>Exam ID</label>
-                                        <input class="form-control" type="text" placeholder="Enter Id here to search">
+                                        <input class="form-control" type="text" placeholder="Enter Id here to search" name="exId">
                                     </div>
                                 </div>
                                 <div class="col-lg-4 py-4">
-                                    <button type="submit" class="btn btn-secondary my-2 w-50">Search</button>
+                                    <button type="submit" class="btn btn-secondary my-2 w-50" name="submit-btn" value="srch">Search</button>
                                 </div>
                             </div>
 
                         </div>
 
                         <div class="card-footer">
-                            <button type="submit" class="btn bg-gradient-success mx-3 float-right btn-lg">Insert
+                            <button type="submit" class="btn bg-gradient-success mx-3 float-right btn-lg" name="submit-btn" value="ins">Insert
                             </button>
-                            <button type="submit" class="btn btn-primary mx-3 float-right btn-lg">Update</button>
-                            <button type="submit" class="btn bg-gradient-danger mx-3 float-right btn-lg">Delete</button>
+                            <button type="submit" class="btn btn-primary mx-3 float-right btn-lg" name="submit-btn" value="update">Update</button>
+                            <button type="submit" class="btn bg-gradient-danger mx-3 float-right btn-lg " name="submit-btn" value="del">Delete</button>
                         </div>
                     </form>
                 </div>
@@ -171,12 +176,12 @@
             //Date picker
             $('#reservationdate').datetimepicker({
                 daysOfWeekDisabled: [0, 6],
-                format: 'L'
+                format: 'Y-M-D'
             });
 
             //Timepicker
             $('#timepicker').datetimepicker({
-                format: 'LT'
+                format: 'H:m'
             })
         })
     </script>
