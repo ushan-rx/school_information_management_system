@@ -1,4 +1,6 @@
-<%--
+<%@ page import="java.util.List" %>
+<%@ page import="com.school.classes.Exam" %>
+<%@ page import="java.util.ArrayList" %><%--
   Created by IntelliJ IDEA.
   User: ushan
   Date: 10/8/2023
@@ -17,7 +19,13 @@
 
 <%
     response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+
+    // retrieve exams arraylist from req object
+    List<Exam> exams = (ArrayList<Exam>) request.getAttribute("examList");
+    pageContext.setAttribute("exams", exams);
 %>
+
+
 
 <div class="wrapper">
     <%--    include nav and sidebar  --%>
@@ -45,11 +53,11 @@
         <!-- Main content -->
         <section class="content">
             <div class="container-fluid">
-                <form>
+                <form action="viewExams" method="post">
                     <div class="form-row">
                         <div class="col-md-5 mb-3">
                             <label for="role">Select </label>
-                            <select class="form-control" id="role" required>
+                            <select class="form-control" id="role" name="grade" required>
                                 <option value="" disabled="disabled" selected>Select Grade</option>
                                 <option value="1">1</option>
                                 <option value="2">2</option>
@@ -69,7 +77,7 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title">Fixed Header Table</h3>
+                                <h3 class="card-title"></h3>
 
                                 <div class="card-tools">
                                     <div class="input-group input-group-sm" style="width: 150px;">
@@ -89,70 +97,35 @@
                                 <table class="table table-head-fixed text-nowrap table-bordered">
                                     <thead>
                                     <tr>
-                                        <th>ID</th>
-                                        <th>User</th>
+                                        <th>Exam ID</th>
+                                        <th>Exam Name</th>
+                                        <th>Method</th>
+                                        <th>Subject ID</th>
+                                        <th>Grade</th>
                                         <th>Date</th>
-                                        <th>Status</th>
-                                        <th>Reason</th>
+                                        <th>Time</th>
+                                        <th>Duration (min)</th>
+                                        <th>Total Marks</th>
+                                        <th>Action</th>
                                     </tr>
                                     </thead>
                                     <tbody>
+                                    <c:forEach var="exam" items='${exams}'>
                                     <tr>
-                                        <td>183</td>
-                                        <td>John Doe</td>
-                                        <td>11-7-2014</td>
-                                        <td><span class="tag tag-success">Approved</span></td>
-                                        <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
+                                        <td>${exam.id}</td>
+                                        <td>${exam.name}</td>
+                                        <td><c:choose><c:when test="${exam.method.equals(\"O\")}">Online</c:when>
+                                            <c:when test="${exam.method.equals(\"P\")}">Physical</c:when></c:choose>
+                                        </td>
+                                        <td>${exam.sub_id}</td>
+                                        <td>${exam.grade}</td>
+                                        <td>${exam.date}</td>
+                                        <td>${exam.time}</td>
+                                        <td>${exam.duration}</td>
+                                        <td>${exam.total_marks}</td>
+                                        <td></td>
                                     </tr>
-                                    <tr>
-                                        <td>219</td>
-                                        <td>Alexander Pierce</td>
-                                        <td>11-7-2014</td>
-                                        <td><span class="tag tag-warning">Pending</span></td>
-                                        <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                                    </tr>
-                                    <tr>
-                                        <td>657</td>
-                                        <td>Bob Doe</td>
-                                        <td>11-7-2014</td>
-                                        <td><span class="tag tag-primary">Approved</span></td>
-                                        <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                                    </tr>
-                                    <tr>
-                                        <td>175</td>
-                                        <td>Mike Doe</td>
-                                        <td>11-7-2014</td>
-                                        <td><span class="tag tag-danger">Denied</span></td>
-                                        <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                                    </tr>
-                                    <tr>
-                                        <td>134</td>
-                                        <td>Jim Doe</td>
-                                        <td>11-7-2014</td>
-                                        <td><span class="tag tag-success">Approved</span></td>
-                                        <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                                    </tr>
-                                    <tr>
-                                        <td>494</td>
-                                        <td>Victoria Doe</td>
-                                        <td>11-7-2014</td>
-                                        <td><span class="tag tag-warning">Pending</span></td>
-                                        <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                                    </tr>
-                                    <tr>
-                                        <td>832</td>
-                                        <td>Michael Doe</td>
-                                        <td>11-7-2014</td>
-                                        <td><span class="tag tag-primary">Approved</span></td>
-                                        <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                                    </tr>
-                                    <tr>
-                                        <td>982</td>
-                                        <td>Rocky Doe</td>
-                                        <td>11-7-2014</td>
-                                        <td><span class="tag tag-danger">Denied</span></td>
-                                        <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                                    </tr>
+                                    </c:forEach>
                                     </tbody>
                                 </table>
                             </div>
