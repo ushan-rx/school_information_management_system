@@ -55,42 +55,52 @@
                     </div>
                     <!-- /.card-header -->
                     <!-- form start -->
-                    <form>
+                    <form action="" method="post" name="subject">
                         <div class="card-body">
                             <div class="form-group">
                                 <label>Subject Name</label>
-                                <input class="form-control" type="text" placeholder="">
+                                <label>
+                                    <input type="text" name="sub_name" class="form-control">
+                                </label>
                             </div>
+
 
                             <div class="form-group">
                                 <label>Grade</label>
-                                <select class="form-control">
-                                    <option disabled="disabled" selected>Select</option>
-                                    <option>1</option>
-                                    <option>2</option>
-                                    <option>3</option>
-                                    <option>4</option>
-                                    <option>5</option>
-                                </select>
+                                <label>
+                                    <select name="sub_grade" class="form-control" id="sub_grade">
+                                        <option disabled="disabled" selected>Select</option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                    </select>
+                                </label>
                             </div>
 
                             <div class="form-group">
                                 <label>Teacher Hours</label>
-                                <input class="form-control" type="text" placeholder="">
+                                <label>
+                                    <input name="sub_hrs" type="text" class="form-control">
+                                </label>
                             </div>
 
                             <div class="form-group">
                                 <label>Types of Tests</label>
                                 <div class="custom-control custom-checkbox">
-                                    <input class="custom-control-input" type="checkbox" id="customCheckbox2" value="option1">
+                                    <input class="custom-control-input" name="sub_test" type="checkbox"
+                                           id="customCheckbox2" value="1">
                                     <label for="customCheckbox2" class="custom-control-label">Assignments</label>
                                 </div>
                                 <div class="custom-control custom-checkbox">
-                                    <input class="custom-control-input" type="checkbox" id="customCheckbox1" value="option2">
-                                    <label for="customCheckbox1" class="custom-control-label">practicals</label>
+                                    <input class="custom-control-input" name="sub_test" type="checkbox"
+                                           id="customCheckbox1" value="2">
+                                    <label for="customCheckbox1" class="custom-control-label">Practicals</label>
                                 </div>
                                 <div class="custom-control custom-checkbox">
-                                    <input class="custom-control-input" type="checkbox" id="customCheckbox3" checked="" value="option3">
+                                    <input class="custom-control-input" name="sub_test" type="checkbox"
+                                           id="customCheckbox3" checked="" value="3">
                                     <label for="customCheckbox3" class="custom-control-label">Term Test</label>
                                 </div>
                             </div>
@@ -103,21 +113,29 @@
                                 <div class="col-lg-8">
                                     <div class="form-group">
                                         <label>Subject ID</label>
-                                        <input class="form-control" type="text" placeholder="Enter Id here to search">
+                                        <input name="sub_id" class="form-control" type="text"
+                                               placeholder="Enter Id here to search">
                                     </div>
                                 </div>
                                 <div class="col-lg-4 py-4">
-                                    <button type="submit" class="btn btn-secondary my-2 w-50">Search</button>
+                                    <button type="submit" class="btn btn-secondary my-2 w-50" name="iuds" value="search"
+                                            onclick="scrh_del()">Search
+                                    </button>
                                 </div>
                             </div>
 
                         </div>
 
                         <div class="card-footer">
-                            <button type="submit" class="btn bg-gradient-success mx-3 float-right btn-lg">Insert
+                            <button type="submit" class="btn bg-gradient-success mx-3 float-right btn-lg" name="iuds"
+                                    value="insert" onclick="validateform()">Insert
                             </button>
-                            <button type="submit" class="btn btn-primary mx-3 float-right btn-lg">Update</button>
-                            <button type="submit" class="btn bg-gradient-danger mx-3 float-right btn-lg">Delete</button>
+                            <button type="submit" class="btn btn-primary mx-3 float-right btn-lg" name="iuds"
+                                    value="update" onclick="validateform()">Update
+                            </button>
+                            <button type="submit" class="btn bg-gradient-danger mx-3 float-right btn-lg" name="iuds"
+                                    value="delete" onclick="scrh_del()">Delete
+                            </button>
                         </div>
                     </form>
                 </div>
@@ -145,6 +163,8 @@
             });
         })
     </script>
+    <script src="<c:url value='/js/subject_upendra.js'/>"></script>
+
 
 </body>
 
