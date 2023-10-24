@@ -55,24 +55,24 @@
                     </div>
                     <!-- /.card-header -->
                     <!-- form start -->
-                    <form>
+                    <form action="manageStaff" method="post">
                         <div class="card-body">
 
                             <div class="form-group">
                                 <label>First Name</label>
-                                <input class="form-control" type="text" placeholder="" id="fname">
+                                <input class="form-control" type="text" placeholder="" id="fname" name="fname">
                             </div>
 
                             <div class="form-group">
                                 <label>Last Name</label>
-                                <input class="form-control" type="text" placeholder="" id="lname">
+                                <input class="form-control" type="text" placeholder="" id="lname" name="lname">
                             </div>
 
                             <div class="form-group">
                                 <label>Date of Birth:</label>
-                                <div class="input-group date" id="reservationdate" data-target-input="nearest">
+                                <div class="input-group date" id="reservationdate" data-target-input="nearest" >
                                     <input type="text" class="form-control datetimepicker-input"
-                                           data-target="#reservationdate"/>
+                                           data-target="#reservationdate"  name = "dob"/>
                                     <div class="input-group-append" data-target="#reservationdate"
                                          data-toggle="datetimepicker">
                                         <div class="input-group-text"><i class="fa fa-calendar"></i></div>
@@ -82,10 +82,10 @@
 
                             <div class="form-group">
                                 <label>Gender</label>
-                                <select class="form-control" id="gender">
+                                <select class="form-control" id="gender" name="gender">
                                     <option disabled="disabled" selected>Select</option>
-                                    <option value="m">Male</option>
-                                    <option value="f">Female</option>
+                                    <option value="M">Male</option>
+                                    <option value="F">Female</option>
                                 </select>
                             </div>
 
@@ -95,27 +95,27 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fas fa-phone"></i></span>
                                     </div>
-                                    <input type="text" class="form-control" id="num">
+                                    <input type="text" class="form-control" id="num" name="telno">
                                 </div>
                                 <!-- /.input group -->
                             </div>
 
                             <div class="form-group">
                                 <label>Role</label>
-                                <select class="form-control" id="role">
+                                <select class="form-control" id="role" name="role">
                                     <option disabled="disabled" selected>Select</option>
                                     <option value="adm">Admin</option>
-                                    <option value="stf">Sectional Head</option>
+                                    <option value="sh">Sectional Head</option>
                                     <option value="tch">Teacher</option>
                                 </select>
                             </div>
                             <%--optional--%>
                             <div class="form-group">
                                 <label>Subject</label>
-                                <select class="form-control" id="sub">
+                                <select class="form-control" id="sub" name="sub">
                                     <option disabled="disabled" selected>Select</option>
-                                    <option>sub1</option>
-                                    <option>sub2</option>
+                                    <option value="SB001">sub1</option>
+                                    <option value="sub2">sub2</option>
                                 </select>
                             </div>
 
@@ -127,8 +127,8 @@
 
                             <div class="form-group">
                                 <label for="exampleInputPassword1">Password</label>
-                                <input type="password" class="form-control" id="exampleInputPassword1"
-                                       placeholder="Password">
+                                <input type="password" class="form-control" id="exampleInputPassword1" name="pwd"
+                                       placeholder="Password" >
                             </div>
 
                         </div>
@@ -139,21 +139,21 @@
                                 <div class="col-lg-8">
                                     <div class="form-group">
                                         <label>Staff ID</label>
-                                        <input class="form-control" type="text" placeholder="Enter Id here to search">
+                                        <input class="form-control" type="text" placeholder="Enter Id here to search" name="sid">
                                     </div>
                                 </div>
                                 <div class="col-lg-4 py-4">
-                                    <button type="submit" class="btn btn-secondary my-2 w-50">Search</button>
+                                    <button type="submit" class="btn btn-secondary my-2 w-50" name="search">Search</button>
                                 </div>
                             </div>
 
                         </div>
 
                         <div class="card-footer">
-                            <button type="submit" class="btn bg-gradient-success mx-3 float-right btn-lg">Insert
+                            <button type="submit" class="btn bg-gradient-success mx-3 float-right btn-lg" name="submit-btn" value ="insert">Insert
                             </button>
-                            <button type="submit" class="btn btn-primary mx-3 float-right btn-lg">Update</button>
-                            <button type="submit" class="btn bg-gradient-danger mx-3 float-right btn-lg">Delete</button>
+                            <button type="submit" class="btn btn-primary mx-3 float-right btn-lg" name="submit-btn" value="update">Update</button>
+                            <button type="submit" class="btn bg-gradient-danger mx-3 float-right btn-lg" name="submit-btn" value="delete">Delete</button>
                         </div>
                     </form>
                 </div>
