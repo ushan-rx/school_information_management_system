@@ -1,4 +1,6 @@
-<%@ page import="com.school.classes.Exam" %><%--
+<%@ page import="com.school.classes.Exam" %>
+<%@ page import="java.util.HashMap" %>
+<%@ page import="java.util.Map" %><%--
   Created by IntelliJ IDEA.
   User: ushan
   Date: 10/8/2023
@@ -16,6 +18,8 @@
 
 <%
     response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+
+    HashMap<String, String> subs = (HashMap<String, String>) request.getAttribute("subList");
 
     Exam exam = (Exam) request.getAttribute("exam");
 
@@ -67,13 +71,18 @@
 
                             <div class="form-group">
                                 <label>Grade</label>
-                                <select class="form-control" name="grade">
+                                <select class="form-control" name="grade" data-placeholder="">
                                     <option disabled="disabled" value="0" selected>Select</option>
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5</option>
+                                    <option value="1" <% if(exam != null)
+                                        out.print(exam.getGrade().equals("1") ? "selected" : "");%>>1</option>
+                                    <option value="2" <% if(exam != null)
+                                        out.print(exam.getGrade().equals("2") ? "selected" : "");%>>2</option>
+                                    <option value="3" <% if(exam != null)
+                                        out.print(exam.getGrade().equals("3") ? "selected" : "");%>>3</option>
+                                    <option value="4" <% if(exam != null)
+                                        out.print(exam.getGrade().equals("4") ? "selected" : "");%>>4</option>
+                                    <option value="5" <% if(exam != null)
+                                        out.print(exam.getGrade().equals("5") ? "selected" : "");%>>5</option>
                                 </select>
                             </div>
 
@@ -81,11 +90,16 @@
                                 <label>Subject</label>
                                 <select class="form-control" name="subject">
                                     <option disabled="disabled" value="0" selected>Select Subject</option>
-                                    <option value="SB001">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="">5</option>
+                                    <%
+                                        for(Map.Entry sub : subs.entrySet()){
+                                            // check if exam object is null (check weather coming from search) and if its the selected option
+                                            if(exam != null && sub.getKey().equals(exam.getSub_id())){
+                                                out.print("<option value=\""+sub.getKey()+"\" selected>"+sub.getValue()+"</option>");
+                                            }else{
+                                                out.print("<option value=\""+sub.getKey()+"\">"+sub.getValue()+"</option>");
+                                            }
+                                        }
+                                    %>
                                 </select>
                             </div>
 
