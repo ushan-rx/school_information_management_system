@@ -4,6 +4,8 @@ public class Subject {
 
     private String sub_id;
     private String sub_name;
+
+    private String sub_grade;
     private String teaching_hrs;
     private String exam_types;
 
@@ -11,6 +13,7 @@ public class Subject {
 
         this.sub_id = subId;
         this.sub_name = subName;
+        this.sub_grade = gradeId;
         this.teaching_hrs = teachingHrs;
         this.exam_types = examTypes;
 
@@ -24,6 +27,9 @@ public class Subject {
         return sub_name;
     }
 
+    public String getSub_grade() {
+        return sub_grade;
+    }
     public String getTeaching_hrs() {
         return teaching_hrs;
     }

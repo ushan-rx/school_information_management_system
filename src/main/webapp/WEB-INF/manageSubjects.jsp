@@ -1,4 +1,4 @@
-<%--
+<%@ page import="com.school.classes.Subject" %><%--
   Created by IntelliJ IDEA.
   User: ushan
   Date: 10/8/2023
@@ -16,6 +16,10 @@
 
 <%
     response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+
+
+    Subject subject = (Subject) request.getAttribute("subject");
+
 %>
 
 <div class="wrapper">
@@ -60,7 +64,7 @@
                             <div class="form-group">
                                 <label>Subject Name</label>
                                 <label>
-                                    <input type="text" name="sub_name" class="form-control">
+                                    <input type="text" name="sub_name" class="form-control" value="<% out.print(subject == null ? "" : subject.getSub_name()); %>">
                                 </label>
                             </div>
 
@@ -70,11 +74,16 @@
                                 <label>
                                     <select name="sub_grade" class="form-control" id="sub_grade">
                                         <option disabled="disabled" selected>Select</option>
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
-                                        <option value="3">3</option>
-                                        <option value="4">4</option>
-                                        <option value="5">5</option>
+                                        <option value="1" <% if(subject != null)
+                                            out.print(subject.getSub_grade().equals("1") ? "selected" : "");%>>1</option>
+                                        <option value="2" <% if(subject != null)
+                                            out.print(subject.getSub_grade().equals("2") ? "selected" : "");%>>2</option>
+                                        <option value="3" <% if(subject != null)
+                                            out.print(subject.getSub_grade().equals("3") ? "selected" : "");%>>3</option>
+                                        <option value="4" <% if(subject != null)
+                                            out.print(subject.getSub_grade().equals("4") ? "selected" : "");%>>4</option>
+                                        <option value="5" <% if(subject != null)
+                                            out.print(subject.getSub_grade().equals("5") ? "selected" : "");%>>5</option>
                                     </select>
                                 </label>
                             </div>
@@ -82,7 +91,7 @@
                             <div class="form-group">
                                 <label>Teacher Hours</label>
                                 <label>
-                                    <input name="sub_hrs" type="text" class="form-control">
+                                    <input name="sub_hrs" type="text" class="form-control" value="<% out.print(subject == null ? "" : subject.getTeaching_hrs()); %>">
                                 </label>
                             </div>
 
