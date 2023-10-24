@@ -55,21 +55,21 @@
                     </div>
                     <!-- /.card-header -->
                     <!-- form start -->
-                    <form>
+                    <form  name="forms" action="modifyStudents" method="post">
                         <div class="card-body">
                             <div class="form-group">
                                 <label>First Name</label>
-                                <input class="form-control" type="text" placeholder="">
+                                <input class="form-control" type="text" placeholder="" name="FName" onsubmit="return validateform()">
                             </div>
 
                             <div class="form-group">
                                 <label>Last Name</label>
-                                <input class="form-control" type="text" placeholder="">
+                                <input class="form-control" type="text" placeholder="" name="LName" onsubmit="validateform()">
                             </div>
 
                             <div class="form-group">
                                 <label>Date of Birth:</label>
-                                <div class="input-group date" id="reservationdate" data-target-input="nearest">
+                                <div class="input-group date" id="reservationdate" data-target-input="nearest" name="DOB">
                                     <input type="text" class="form-control datetimepicker-input"
                                            data-target="#reservationdate"/>
                                     <div class="input-group-append" data-target="#reservationdate"
@@ -81,7 +81,7 @@
 
                             <div class="form-group">
                                 <label>Gender</label>
-                                <select class="form-control">
+                                <select class="form-control" name="Gender">
                                     <option disabled="disabled" selected>Select</option>
                                     <option>Male</option>
                                     <option>Female</option>
@@ -90,12 +90,12 @@
 
                             <div class="form-group">
                                 <label>City</label>
-                                <input class="form-control" type="text" placeholder="">
+                                <input class="form-control" type="text" placeholder="" name="city">
                             </div>
 
                             <div class="form-group">
                                 <label>Grade</label>
-                                <select class="form-control">
+                                <select class="form-control" name="Grade">
                                     <option disabled="disabled" selected>Select</option>
                                     <option>1</option>
                                     <option>2</option>
@@ -107,7 +107,7 @@
 
                             <div class="form-group">
                                 <label>Class</label>
-                                <select class="form-control">
+                                <select class="form-control" name="Class_id">
                                     <option disabled="disabled" selected>Select</option>
                                     <option>A</option>
                                     <option>B</option>
@@ -118,7 +118,7 @@
 
                             <div class="form-group">
                                 <label>Guardian Name</label>
-                                <input class="form-control" type="text" placeholder="">
+                                <input class="form-control" type="text" placeholder="" name="GName">
                             </div>
 
                             <div class="form-group">
@@ -127,7 +127,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fas fa-phone"></i></span>
                                     </div>
-                                    <input type="text" class="form-control">
+                                    <input type="text" class="form-control" name="GPhoneNum" onsubmit="return phonenumber(inputtxt) ">
                                 </div>
                                 <!-- /.input group -->
 
@@ -141,21 +141,21 @@
                                 <div class="col-lg-8">
                                     <div class="form-group">
                                         <label>Student ID</label>
-                                        <input class="form-control" type="text" placeholder="Enter Id here to search">
+                                        <input class="form-control" type="text" placeholder="Enter Id here to search" name="SID">
                                     </div>
                                 </div>
                                 <div class="col-lg-4 py-4">
-                                    <button type="submit" class="btn btn-secondary my-2 w-50">Search</button>
+                                    <button type="submit" class="btn btn-secondary my-2 w-50" name = "submit-btn" value="srch">Search</button>
                                 </div>
                             </div>
 
                         </div>
 
                         <div class="card-footer">
-                            <button type="submit" class="btn bg-gradient-success mx-3 float-right btn-lg">Insert
+                            <button type="submit" class="btn bg-gradient-success mx-3 float-right btn-lg"  name = "submit-btn" value="ins">Insert
                             </button>
-                            <button type="submit" class="btn btn-primary mx-3 float-right btn-lg">Update</button>
-                            <button type="submit" class="btn bg-gradient-danger mx-3 float-right btn-lg">Delete</button>
+                            <button type="submit" class="btn btn-primary mx-3 float-right btn-lg" name = "submit-btn" value = "update">Update</button>
+                            <button type="submit" class="btn bg-gradient-danger mx-3 float-right btn-lg" name = "submit-btn" value="del">Delete</button>
                         </div>
                     </form>
                 </div>
