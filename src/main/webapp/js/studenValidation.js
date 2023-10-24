@@ -13,9 +13,9 @@ function validateform(){
     var FName = document.forms.FName.value;
     var LName = document.forms.LName.value;
 
-    if (FName==null||FName==null){
+    if (FName == null){
         alert("FName can't be blank");
-    }else if (LName==null||LName==null){
+    }else if (LName == null){
         alert("LName can't be blank");
     }
 }

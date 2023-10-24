@@ -1,4 +1,8 @@
-<%--
+<%@ page import="java.util.HashMap" %>
+<%@ page import="java.util.Map" %>
+<%@ page import="com.school.classes.Student" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="java.util.List" %><%--
   Created by IntelliJ IDEA.
   User: ushan
   Date: 10/8/2023
@@ -17,6 +21,11 @@
 
 <%
     response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+
+    HashMap<String, String> classes = (HashMap<String, String>) request.getAttribute("classList");
+
+    List<Student> stds = (ArrayList<Student>) request.getAttribute("stdList");
+    pageContext.setAttribute("stds", stds);
 %>
 
 <div class="wrapper">
@@ -45,26 +54,17 @@
         <!-- Main content -->
         <section class="content">
             <div class="container-fluid">
-                <form>
+                <form action="viewStudents" method="post">
                     <div class="form-row">
                         <div class="col-md-5 mb-3">
-                            <label for="grade">Grade</label>
-                            <select class="form-control" id="grade" required>
-                                <option value="" disabled="disabled" selected>Select Grade</option>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                            </select>
-                        </div>
-                        <div class="col-md-5 mb-3">
                             <label for="class">Class</label>
-                            <select class="form-control" id="class" required>
+                            <select class="form-control" id="class" name="class" required>
                                 <option value="" disabled="disabled" selected>Select Class</option>
-                                <option value="a">A</option>
-                                <option value="b">B</option>
-                                <option value="c">C</option>
+                                <%
+                                    for(Map.Entry cls : classes.entrySet()){
+                                        out.print("<option value=\""+cls.getKey()+"\">"+cls.getValue()+"</option>");
+                                    }
+                                %>
                             </select>
                         </div>
                         <div class="col-md-2 mb-3 py-4">
@@ -98,70 +98,23 @@
                                 <table class="table table-head-fixed text-nowrap table-bordered">
                                     <thead>
                                     <tr>
-                                        <th>ID</th>
-                                        <th>User</th>
-                                        <th>Date</th>
-                                        <th>Status</th>
-                                        <th>Reason</th>
+                                        <th>First Name</th>
+                                        <th>Last Name</th>
+                                        <th>Gender</th>
+                                        <th>Date of Birth</th>
+                                        <th>Tp</th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr>
-                                        <td>183</td>
-                                        <td>John Doe</td>
-                                        <td>11-7-2014</td>
-                                        <td><span class="tag tag-success">Approved</span></td>
-                                        <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                                    </tr>
-                                    <tr>
-                                        <td>219</td>
-                                        <td>Alexander Pierce</td>
-                                        <td>11-7-2014</td>
-                                        <td><span class="tag tag-warning">Pending</span></td>
-                                        <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                                    </tr>
-                                    <tr>
-                                        <td>657</td>
-                                        <td>Bob Doe</td>
-                                        <td>11-7-2014</td>
-                                        <td><span class="tag tag-primary">Approved</span></td>
-                                        <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                                    </tr>
-                                    <tr>
-                                        <td>175</td>
-                                        <td>Mike Doe</td>
-                                        <td>11-7-2014</td>
-                                        <td><span class="tag tag-danger">Denied</span></td>
-                                        <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                                    </tr>
-                                    <tr>
-                                        <td>134</td>
-                                        <td>Jim Doe</td>
-                                        <td>11-7-2014</td>
-                                        <td><span class="tag tag-success">Approved</span></td>
-                                        <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                                    </tr>
-                                    <tr>
-                                        <td>494</td>
-                                        <td>Victoria Doe</td>
-                                        <td>11-7-2014</td>
-                                        <td><span class="tag tag-warning">Pending</span></td>
-                                        <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                                    </tr>
-                                    <tr>
-                                        <td>832</td>
-                                        <td>Michael Doe</td>
-                                        <td>11-7-2014</td>
-                                        <td><span class="tag tag-primary">Approved</span></td>
-                                        <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                                    </tr>
-                                    <tr>
-                                        <td>982</td>
-                                        <td>Rocky Doe</td>
-                                        <td>11-7-2014</td>
-                                        <td><span class="tag tag-danger">Denied</span></td>
-                                        <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                                    </tr>
+                                        <c:forEach var="std" items='${stds}'>
+                                            <tr>
+                                                <td>${std.FName}</td>
+                                                <td>${std.LName}</td>
+                                                <td>${std.gender}</td>
+                                                <td>${std.DOB}</td>
+                                                <td>${std.GPhoneNum}</td>
+                                            </tr>
+                                    </c:forEach>
                                     </tbody>
                                 </table>
                             </div>

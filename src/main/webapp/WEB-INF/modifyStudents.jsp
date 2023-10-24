@@ -1,4 +1,6 @@
-<%--
+<%@ page import="java.util.HashMap" %>
+<%@ page import="java.util.Map" %>
+<%@ page import="com.school.classes.Student" %><%--
   Created by IntelliJ IDEA.
   User: ushan
   Date: 10/8/2023
@@ -16,6 +18,11 @@
 
 <%
     response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+
+    HashMap<String, String> cls = (HashMap<String, String>) request.getAttribute("clsList");
+
+    Student std = (Student) request.getAttribute("student");
+
 %>
 
 <div class="wrapper">
@@ -59,19 +66,21 @@
                         <div class="card-body">
                             <div class="form-group">
                                 <label>First Name</label>
-                                <input class="form-control" type="text" placeholder="" name="FName" onsubmit="return validateform()">
+<%--                                return --%>
+                                <input class="form-control" type="text" placeholder="" name="FName" onsubmit="validateform()" value="<% out.print(std == null ? "" : std.getFName()); %>">
                             </div>
 
                             <div class="form-group">
                                 <label>Last Name</label>
-                                <input class="form-control" type="text" placeholder="" name="LName" onsubmit="validateform()">
+<%--                                --%>
+                                <input class="form-control" type="text" placeholder="" name="LName" onsubmit="validateform()" value="<% out.print(std == null ? "" : std.getLName()); %>">
                             </div>
 
                             <div class="form-group">
                                 <label>Date of Birth:</label>
-                                <div class="input-group date" id="reservationdate" data-target-input="nearest" name="DOB">
+                                <div class="input-group date" id="reservationdate" data-target-input="nearest">
                                     <input type="text" class="form-control datetimepicker-input"
-                                           data-target="#reservationdate"/>
+                                           data-target="#reservationdate" name="DOB" value="<% out.print(std == null ? "" : std.getDOB()); %>"/>
                                     <div class="input-group-append" data-target="#reservationdate"
                                          data-toggle="datetimepicker">
                                         <div class="input-group-text"><i class="fa fa-calendar"></i></div>
@@ -83,42 +92,48 @@
                                 <label>Gender</label>
                                 <select class="form-control" name="Gender">
                                     <option disabled="disabled" selected>Select</option>
-                                    <option>Male</option>
-                                    <option>Female</option>
+                                    <option value="M">Male</option>
+                                    <option value="F">Female</option>
                                 </select>
                             </div>
 
                             <div class="form-group">
                                 <label>City</label>
-                                <input class="form-control" type="text" placeholder="" name="city">
+                                <input class="form-control" type="text" placeholder="" name="City" value="<% out.print(std == null ? "" : std.getCity()); %>">
                             </div>
 
                             <div class="form-group">
                                 <label>Grade</label>
                                 <select class="form-control" name="Grade">
+                                    <option value="1" <% if(std != null)
+                                        out.print(std.getGrade() == 1 ? "selected" : "");%>>1</option>
+                                    <option value="2" <% if(std != null)
+                                        out.print(std.getGrade() == 2 ? "selected" : "");%>>2</option>
+                                    <option value="3" <% if(std != null)
+                                        out.print(std.getGrade() == 3 ? "selected" : "");%>>3</option>
+                                    <option value="4" <% if(std != null)
+                                        out.print(std.getGrade() == 4 ? "selected" : "");%>>4</option>
                                     <option disabled="disabled" selected>Select</option>
-                                    <option>1</option>
-                                    <option>2</option>
-                                    <option>3</option>
-                                    <option>4</option>
-                                    <option>5</option>
+                                    <option value="5" <% if(std != null)
+                                        out.print(std.getGrade() == 5 ? "selected" : "");%>>5</option>
                                 </select>
                             </div>
 
                             <div class="form-group">
                                 <label>Class</label>
-                                <select class="form-control" name="Class_id">
+                                <select class="form-control" name="Class">
                                     <option disabled="disabled" selected>Select</option>
-                                    <option>A</option>
-                                    <option>B</option>
-                                    <option>C</option>
-                                    <option>D</option>
+                                    <%
+                                        for(Map.Entry clss : cls.entrySet()){
+                                            out.print("<option value=\""+clss.getKey()+"\">"+clss.getValue()+"</option>");
+                                        }
+                                    %>
                                 </select>
                             </div>
 
                             <div class="form-group">
                                 <label>Guardian Name</label>
-                                <input class="form-control" type="text" placeholder="" name="GName">
+                                <input class="form-control" type="text" placeholder="" name="GName" value="<% out.print(std == null ? "" : std.getGName()); %>">
                             </div>
 
                             <div class="form-group">
@@ -127,7 +142,8 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fas fa-phone"></i></span>
                                     </div>
-                                    <input type="text" class="form-control" name="GPhoneNum" onsubmit="return phonenumber(inputtxt) ">
+<%--                                    --%>
+                                    <input type="text" class="form-control" name="GPhoneNum" onsubmit="phonenumber(inputtxt)" value="<% out.print(std == null ? "" : std.getGPhoneNum()); %>">
                                 </div>
                                 <!-- /.input group -->
 
@@ -141,7 +157,7 @@
                                 <div class="col-lg-8">
                                     <div class="form-group">
                                         <label>Student ID</label>
-                                        <input class="form-control" type="text" placeholder="Enter Id here to search" name="SID">
+                                        <input class="form-control" type="text" placeholder="Enter Id here to search" name="SID" value="<% out.print(std == null ? "" : std.getSID()); %>" <% out.print(std == null ? "" : "readonly"); %>>
                                     </div>
                                 </div>
                                 <div class="col-lg-4 py-4">
@@ -174,6 +190,7 @@
         document.getElementById("mstud").parentElement.classList.add("menu-open");
     </script>
     <%--include js stuff--%>
+        <script src="<c:url value='/js/studenValidation.js'/>"></script>
     <c:import url="/WEB-INF/includes/jsContent.jsp"/>
     <script>
         $(function () {
