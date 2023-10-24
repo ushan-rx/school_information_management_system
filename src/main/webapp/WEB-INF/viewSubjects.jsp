@@ -1,11 +1,13 @@
-<%--
+<%@ page import="java.util.List" %>
+<%@ page import="com.school.classes.Subject" %>
+<%@ page import="java.util.ArrayList" %><%--
   Created by IntelliJ IDEA.
   User: ushan
   Date: 10/8/2023
   Time: 6:31 AM
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -17,6 +19,10 @@
 
 <%
     response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+
+    // retrieve exams arraylist from req object
+    List<Subject> subjects = (ArrayList<Subject>) request.getAttribute("subjectList");
+    pageContext.setAttribute("subjects", subjects);
 %>
 
 <div class="wrapper">
@@ -45,11 +51,11 @@
         <!-- Main content -->
         <section class="content">
             <div class="container-fluid">
-                <form>
+                <form method="post">
                     <div class="form-row">
                         <div class="col-md-5 mb-3">
-                            <label for="role">Select</label>
-                            <select class="form-control" id="role" required>
+                            <label for="grade">Select</label>
+                            <select class="form-control" id="grade" name="grade_id" required>
                                 <option disabled="disabled" selected>Select Grade</option>
                                 <option>1</option>
                                 <option>2</option>
@@ -88,70 +94,25 @@
                                 <table class="table table-head-fixed text-nowrap table-bordered">
                                     <thead>
                                     <tr>
-                                        <th>ID</th>
-                                        <th>User</th>
-                                        <th>Date</th>
-                                        <th>Status</th>
-                                        <th>Reason</th>
+                                        <th>Subject ID</th>
+                                        <th>Subject Name</th>
+                                        <th>Teaching Hours</th>
+
+
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr>
-                                        <td>183</td>
-                                        <td>John Doe</td>
-                                        <td>11-7-2014</td>
-                                        <td><span class="tag tag-success">Approved</span></td>
-                                        <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                                    </tr>
-                                    <tr>
-                                        <td>219</td>
-                                        <td>Alexander Pierce</td>
-                                        <td>11-7-2014</td>
-                                        <td><span class="tag tag-warning">Pending</span></td>
-                                        <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                                    </tr>
-                                    <tr>
-                                        <td>657</td>
-                                        <td>Bob Doe</td>
-                                        <td>11-7-2014</td>
-                                        <td><span class="tag tag-primary">Approved</span></td>
-                                        <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                                    </tr>
-                                    <tr>
-                                        <td>175</td>
-                                        <td>Mike Doe</td>
-                                        <td>11-7-2014</td>
-                                        <td><span class="tag tag-danger">Denied</span></td>
-                                        <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                                    </tr>
-                                    <tr>
-                                        <td>134</td>
-                                        <td>Jim Doe</td>
-                                        <td>11-7-2014</td>
-                                        <td><span class="tag tag-success">Approved</span></td>
-                                        <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                                    </tr>
-                                    <tr>
-                                        <td>494</td>
-                                        <td>Victoria Doe</td>
-                                        <td>11-7-2014</td>
-                                        <td><span class="tag tag-warning">Pending</span></td>
-                                        <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                                    </tr>
-                                    <tr>
-                                        <td>832</td>
-                                        <td>Michael Doe</td>
-                                        <td>11-7-2014</td>
-                                        <td><span class="tag tag-primary">Approved</span></td>
-                                        <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                                    </tr>
-                                    <tr>
-                                        <td>982</td>
-                                        <td>Rocky Doe</td>
-                                        <td>11-7-2014</td>
-                                        <td><span class="tag tag-danger">Denied</span></td>
-                                        <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                                    </tr>
+                                    <c:forEach var="subject" items='${subjects}'>
+                                        <tr>
+
+                                            <td>${subject.sub_id}</td>
+                                            <td>${subject.sub_name}</td>
+                                            <td>${subject.teaching_hrs}</td>
+
+
+                                        </tr>
+                                    </c:forEach>
+
                                     </tbody>
                                 </table>
                             </div>
