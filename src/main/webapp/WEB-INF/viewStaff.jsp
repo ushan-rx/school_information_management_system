@@ -1,4 +1,6 @@
-<%--
+<%@ page import="java.util.List" %>
+<%@ page import="com.school.classes.Staff" %>
+<%@ page import="java.util.ArrayList" %><%--
   Created by IntelliJ IDEA.
   User: ushan
   Date: 10/8/2023
@@ -17,6 +19,8 @@
 
 <%
     response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+    List<Staff> staffs = (ArrayList<Staff>) request.getAttribute("staffList");
+    pageContext.setAttribute("staffs", staffs);
 %>
 
 <div class="wrapper">
@@ -45,11 +49,11 @@
         <!-- Main content -->
         <section class="content">
             <div class="container-fluid">
-                <form>
+                <form action="viewStaff" method="post">
                     <div class="form-row">
                         <div class="col-md-5 mb-3">
                             <label for="role">Select 1</label>
-                            <select class="form-control" id="role" required>
+                            <select class="form-control" id="role" name="role" required>
                                 <option value="" disabled="disabled" selected>Select Role</option>
                                 <option value="adm">Admin</option>
                                 <option value="sh">Sectional Head</option>
@@ -67,7 +71,7 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title">Fixed Header Table</h3>
+                                <h3 class="card-title"></h3>
 
                                 <div class="card-tools">
                                     <div class="input-group input-group-sm" style="width: 150px;">
@@ -88,69 +92,37 @@
                                     <thead>
                                     <tr>
                                         <th>ID</th>
-                                        <th>User</th>
-                                        <th>Date</th>
-                                        <th>Status</th>
-                                        <th>Reason</th>
+                                        <th>First Name</th>
+                                        <th>Last Name</th>
+                                        <th> Date of Birth</th>
+                                        <th>Gender</th>
+                                        <th>Telephone</th>
+                                        <th>Role</th>
+                                        <th>Email</th>
+                                        <th>Subject</th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr>
-                                        <td>183</td>
-                                        <td>John Doe</td>
-                                        <td>11-7-2014</td>
-                                        <td><span class="tag tag-success">Approved</span></td>
-                                        <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                                    </tr>
-                                    <tr>
-                                        <td>219</td>
-                                        <td>Alexander Pierce</td>
-                                        <td>11-7-2014</td>
-                                        <td><span class="tag tag-warning">Pending</span></td>
-                                        <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                                    </tr>
-                                    <tr>
-                                        <td>657</td>
-                                        <td>Bob Doe</td>
-                                        <td>11-7-2014</td>
-                                        <td><span class="tag tag-primary">Approved</span></td>
-                                        <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                                    </tr>
-                                    <tr>
-                                        <td>175</td>
-                                        <td>Mike Doe</td>
-                                        <td>11-7-2014</td>
-                                        <td><span class="tag tag-danger">Denied</span></td>
-                                        <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                                    </tr>
-                                    <tr>
-                                        <td>134</td>
-                                        <td>Jim Doe</td>
-                                        <td>11-7-2014</td>
-                                        <td><span class="tag tag-success">Approved</span></td>
-                                        <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                                    </tr>
-                                    <tr>
-                                        <td>494</td>
-                                        <td>Victoria Doe</td>
-                                        <td>11-7-2014</td>
-                                        <td><span class="tag tag-warning">Pending</span></td>
-                                        <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                                    </tr>
-                                    <tr>
-                                        <td>832</td>
-                                        <td>Michael Doe</td>
-                                        <td>11-7-2014</td>
-                                        <td><span class="tag tag-primary">Approved</span></td>
-                                        <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                                    </tr>
-                                    <tr>
-                                        <td>982</td>
-                                        <td>Rocky Doe</td>
-                                        <td>11-7-2014</td>
-                                        <td><span class="tag tag-danger">Denied</span></td>
-                                        <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                                    </tr>
+                                 <c:forEach var="staff" items='${staffs}'>
+                                     <tr>
+                                         <td>${staff.sid}</td>
+                                         <td>${staff.fname}</td>
+                                         <td>${staff.lname}</td>
+                                         <td>${staff.dob}</td>
+                                         <td><c:choose><c:when test="${staff.gender.equals(\"M\")}">MALE</c:when>
+                                             <c:when test="${staff.gender.equals(\"F\")}">FEMALE</c:when></c:choose>
+                                         </td>
+                                         <td>${staff.telno}</td>
+                                         <td><c:choose><c:when test="${staff.role.equals(\"adm\")}">ADMIN</c:when>
+                                             <c:when test="${staff.role.equals(\"sh\")}">SECTIONAL HEAD</c:when>
+                                             <c:when test="${staff.role.equals(\"tch\")}">TEACHER</c:when>
+                                         </c:choose>
+                                         </td>
+                                         <td>${staff.email}</td>
+                                         <td>${staff.sub_id}</td>
+
+                                     </tr>
+                                 </c:forEach>
                                     </tbody>
                                 </table>
                             </div>
