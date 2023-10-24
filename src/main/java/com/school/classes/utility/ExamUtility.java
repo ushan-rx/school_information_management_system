@@ -7,6 +7,7 @@ import com.school.classes.GenerateId;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
 
 public class ExamUtility {
@@ -83,5 +84,16 @@ public class ExamUtility {
             results.add(row);
         }
         return results;
+    }
+
+    public LinkedHashMap<String, String> getSubjects() throws SQLException, ClassNotFoundException {
+        LinkedHashMap<String, String> subjects = new LinkedHashMap<>();
+        String query = "SELECT * FROM subject";
+
+        ResultSet rs = DB.search(query);
+        while (rs.next()){
+            subjects.put(rs.getString("sub_id"), rs.getString("sub_name"));
+        }
+        return subjects;
     }
 }
