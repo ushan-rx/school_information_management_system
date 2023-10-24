@@ -1,6 +1,9 @@
 package com.school.classes;
 
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class subjectDBUtil {
 
@@ -27,8 +30,6 @@ public class subjectDBUtil {
                 for (int i = 0; i < sub_test.length; i++) {
 
                     examTypes = examTypes.concat(sub_test[i]);
-
-
                 }
 
                 System.out.println(examTypes);
@@ -63,7 +64,6 @@ public class subjectDBUtil {
 
                 examTypes = examTypes.concat(sub_test[i]);
 
-
             }
 
             System.out.println(examTypes);
@@ -73,7 +73,6 @@ public class subjectDBUtil {
             String sql_update = "UPDATE subject SET sub_name = '" + sub_name + "', grade_id = '" + grade + "', teaching_hrs = '" + hrs + "', exam_types = '" + types + "' WHERE sub_id = '" + sub_id + "'";
 
             DB.iud(sql_update);
-
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -92,7 +91,6 @@ public class subjectDBUtil {
 
             DB.iud(sql_delete);
 
-
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -100,5 +98,31 @@ public class subjectDBUtil {
         return isSuccess;
     }
 
+    public List<Subject> ViewSubjects() throws SQLException, ClassNotFoundException {
+        List<Subject> results = new ArrayList<>();
+        String search_query = "SELECT * FROM subject WHERE status =1";
+        ResultSet rs = DB.search(search_query);
+        while (rs.next()) {
+            Subject row = new Subject(rs.getString("sub_id"), rs.getString("sub_name"),
+                    rs.getString("grade_id"), rs.getString("teaching_hrs"),
+                    rs.getString("exam_types"));
 
+            results.add(row);
+        }
+        return results;
+    }
+
+    public List<Subject> ViewSubjects(int grade) throws SQLException, ClassNotFoundException {
+        List<Subject> results = new ArrayList<>();
+        String search_query = " SELECT * FROM subject WHERE status =1 AND grade_id = '" + grade + "' " ;
+        ResultSet rs = DB.search(search_query);
+        while (rs.next()) {
+            Subject row = new Subject(rs.getString("sub_id"), rs.getString("sub_name"),
+                    rs.getString("grade_id"), rs.getString("teaching_hrs"),
+                    rs.getString("exam_types"));
+
+            results.add(row);
+        }
+        return results;
+    }
 }

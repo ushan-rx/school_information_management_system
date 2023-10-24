@@ -8,11 +8,6 @@ function validateform() {
         window.location.reload();
         return false;
 
-    } else if (/^[A-Za-z]+$/.test(sub_name)) {
-        alert("Subject Name must be only letters.");
-        window.location.reload();
-        return false;
-
     } else if (sub_hrs === null || sub_hrs === "" || sub_hrs === undefined) {
         alert("Teaching Hours can't be blank");
         window.location.reload();
