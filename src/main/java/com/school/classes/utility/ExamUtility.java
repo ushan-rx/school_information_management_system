@@ -1,4 +1,8 @@
-package com.school.classes;
+package com.school.classes.utility;
+
+import com.school.classes.DB;
+import com.school.classes.Exam;
+import com.school.classes.GenerateId;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -25,21 +29,33 @@ public class ExamUtility {
         }
     }
 
-
     public void updateExam(String exam_id, String name, String grade, String subject, String date,
                            String time, String duration, String method, String marks) throws SQLException, ClassNotFoundException {
 
 
-            String insQuery = "UPDATE exam SET `exam_name` = '"+name+"',`method` = '"+method+"', `sub_id` = '"+subject+"', `grade_id` = "+grade+
+            String upQuery = "UPDATE exam SET `exam_name` = '"+name+"',`method` = '"+method+"', `sub_id` = '"+subject+"', `grade_id` = "+grade+
                     ", `date` = '"+date+"', `time` = '"+time+"', `duration` = "+duration+", `total_marks` = "+marks+" WHERE `exam_id`= '"+exam_id+"'";
-            DB.iud(insQuery);
+            DB.iud(upQuery);
+    }
+
+    public Exam searchExam(String id) throws SQLException, ClassNotFoundException {
+        String sql = "SELECT * FROM exam WHERE exam_id = '"+id+"' AND status = 1";
+        ResultSet rs = DB.search(sql);
+        if (rs.next()){
+            return new Exam(rs.getString("exam_id"), rs.getString("exam_name"),
+                    rs.getString("method"), rs.getString("sub_id"),
+                    rs.getString("grade_id"), rs.getString("date"),
+                    rs.getString("time"), rs.getString("duration"),
+                    rs.getString("total_marks"));
+        }
+        return null;
     }
 
 
 
     public List<Exam> viewExams() throws SQLException, ClassNotFoundException {
         List<Exam> results= new ArrayList<>();
-        String get_query = "SELECT * FROM exam WHERE status =1";
+        String get_query = "SELECT * FROM exam WHERE status = 1";
         ResultSet rs = DB.search(get_query);
         while(rs.next()){
             Exam row = new Exam(rs.getString("exam_id"), rs.getString("exam_name"),

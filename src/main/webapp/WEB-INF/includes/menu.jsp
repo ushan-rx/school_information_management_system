@@ -193,7 +193,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a href="/tomcat10t/pages/tables/jsgrid.html" class="nav-link" id="vrs">
+              <a href="viewResults" class="nav-link" id="vrs">
                 <i class="far fa-circle nav-icon"></i>
                 <p>View Results</p>
               </a>

@@ -67,7 +67,10 @@
                             </select>
                         </div>
                         <div class="col-md-2 mb-3 py-4">
-                            <button class="btn btn-info w-50 my-2 mx-5" type="submit">Search</button>
+                            <button class="btn btn-info w-50 my-2 mx-5" type="submit">Filter</button>
+                        </div>
+                        <div class="col-md-2 mb-3 py-4">
+                            <a class="btn btn-danger w-50 my-2 mx-1" href="viewExams">Reset</a>
                         </div>
                     </div>
 
@@ -123,7 +126,13 @@
                                         <td>${exam.time}</td>
                                         <td>${exam.duration}</td>
                                         <td>${exam.total_marks}</td>
-                                        <td></td>
+                                        <td>
+                                            <form action="manageExams" method="post">
+                                                <button  class="btn btn-info btn-sm" type="submit" name="edit" value="${exam.id}">
+                                                <i class="mx-2 fas fa-pencil-alt"></i>Edit
+                                                </button>
+                                            </form>
+                                        </td>
                                     </tr>
                                     </c:forEach>
                                     </tbody>

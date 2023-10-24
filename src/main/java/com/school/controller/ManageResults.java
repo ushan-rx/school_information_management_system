@@ -12,8 +12,8 @@ import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.SQLException;
 
-@WebServlet("/manageExams")
-public class ManageExams extends HttpServlet {
+@WebServlet("/manageResults")
+public class ManageResults extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
@@ -31,7 +31,7 @@ public class ManageExams extends HttpServlet {
 
         if(req.getParameter("edit") != null){
             String id = req.getParameter("edit");
-            searchAndForward(req, resp, eu, id);
+            ManageExams.searchAndForward(req, resp, eu, id);
         }else if(req.getParameter("submit-btn").equals("ins")){
             if(req.getParameter("exName") != null && req.getParameter("grade") != null &&
                     req.getParameter("subject") != null && req.getParameter("date") != null &&
@@ -77,7 +77,6 @@ public class ManageExams extends HttpServlet {
 
                 try {
                     eu.updateExam(ex_id, name, grade, subject, date, time, duration, method, marks);
-                    System.out.println("aa");
                     req.setAttribute("op", "update");
                     req.getRequestDispatcher("WEB-INF/manageExams.jsp").forward(req,resp);
                 } catch (SQLException | ClassNotFoundException e) {
@@ -88,26 +87,12 @@ public class ManageExams extends HttpServlet {
         }else if(req.getParameter("submit-btn").equals("del")){
 
         }else if(req.getParameter("submit-btn").equals("srch")){
-            if(req.getParameter("exId") != null){
-                String id = req.getParameter("exId");
-                searchAndForward(req, resp, eu, id);
-            }
 
         }
 
-    }
 
-    static void searchAndForward(HttpServletRequest req, HttpServletResponse resp, ExamUtility eu, String id) throws ServletException, IOException {
-        try {
-            Exam exam = eu.searchExam(id);
-            if(exam != null){
-                req.setAttribute("exam", exam);
-                req.getRequestDispatcher("WEB-INF/manageExams.jsp").forward(req,resp);
-            }else {
-                req.getRequestDispatcher("WEB-INF/errorPage.jsp").forward(req, resp);
-            }
-        } catch (SQLException | ClassNotFoundException e) {
-            throw new RuntimeException(e);
-        }
+
+
+
     }
 }

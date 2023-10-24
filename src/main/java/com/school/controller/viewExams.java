@@ -1,8 +1,7 @@
 package com.school.controller;
 
-import com.school.classes.DB;
 import com.school.classes.Exam;
-import com.school.classes.ExamUtility;
+import com.school.classes.utility.ExamUtility;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
