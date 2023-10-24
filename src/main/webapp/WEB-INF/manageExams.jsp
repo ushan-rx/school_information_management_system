@@ -1,4 +1,4 @@
-<%--
+<%@ page import="com.school.classes.Exam" %><%--
   Created by IntelliJ IDEA.
   User: ushan
   Date: 10/8/2023
@@ -16,6 +16,9 @@
 
 <%
     response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+
+    Exam exam = (Exam) request.getAttribute("exam");
+
 %>
 
 <div class="wrapper">
@@ -59,7 +62,7 @@
                         <div class="card-body">
                             <div class="form-group">
                                 <label>Exam Name</label>
-                                <input class="form-control" type="text" placeholder="" name="exName">
+                                <input class="form-control" type="text" placeholder="" name="exName" value="<% out.print(exam == null ? "" : exam.getName()); %>">
                             </div>
 
                             <div class="form-group">
@@ -90,7 +93,7 @@
                                 <label>Date of Exam:</label>
                                 <div class="input-group date" id="reservationdate" data-target-input="nearest">
                                     <input type="text" class="form-control datetimepicker-input"
-                                           data-target="#reservationdate" name="date"/>
+                                           data-target="#reservationdate" name="date" value="<% out.print(exam == null ? "" : exam.getDate()); %>"/>
                                     <div class="input-group-append" data-target="#reservationdate"
                                          data-toggle="datetimepicker">
                                         <div class="input-group-text"><i class="fa fa-calendar"></i></div>
@@ -101,7 +104,7 @@
                             <div class="form-group">
                                 <label>Time of exam:</label>
                                 <div class="input-group date" id="timepicker" data-target-input="nearest">
-                                    <input type="text" class="form-control datetimepicker-input" data-target="#timepicker" name="time">
+                                    <input type="text" class="form-control datetimepicker-input" data-target="#timepicker" name="time" value="<% out.print(exam == null ? "" : exam.getTime()); %>">
                                     <div class="input-group-append" data-target="#timepicker" data-toggle="datetimepicker">
                                         <div class="input-group-text"><i class="far fa-clock"></i></div>
                                     </div>
@@ -111,12 +114,12 @@
 
                             <div class="form-group">
                                 <label>Time Duration</label>
-                                <input class="form-control" type="text" placeholder="" name="duration">
+                                <input class="form-control" type="text" placeholder="" name="duration" value="<% out.print(exam == null ? "" : exam.getDuration()); %>">
                             </div>
 
                             <div class="form-group">
                                 <label>Total Marks</label>
-                                <input class="form-control" type="text" placeholder="" name="marks">
+                                <input class="form-control" type="text" placeholder="" name="marks" value="<% out.print(exam == null ? "" : exam.getTotal_marks()); %>">
                             </div>
 
                             <div class="form-group">
@@ -137,7 +140,7 @@
                                 <div class="col-lg-8">
                                     <div class="form-group">
                                         <label>Exam ID</label>
-                                        <input class="form-control" type="text" placeholder="Enter Id here to search" name="exId">
+                                        <input class="form-control" type="text" placeholder="Enter Id here to search" name="exId" value="<% out.print(exam == null ? "" : exam.getId()); %>" <% out.print(exam == null ? "" : "readonly"); %>>
                                     </div>
                                 </div>
                                 <div class="col-lg-4 py-4">
