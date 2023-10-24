@@ -122,8 +122,14 @@ public class ManageExams extends HttpServlet {
         try {
             Exam exam = eu.searchExam(id);
             if(exam != null){
-                req.setAttribute("exam", exam);
-                req.getRequestDispatcher("WEB-INF/manageExams.jsp").forward(req,resp);
+                try {
+                    LinkedHashMap<String, String> subjects = eu.getSubjects();
+                    req.setAttribute("subList", subjects);
+                    req.setAttribute("exam", exam);
+                    req.getRequestDispatcher("WEB-INF/manageExams.jsp").forward(req,resp);
+                } catch (SQLException | ClassNotFoundException e) {
+                    throw new RuntimeException(e);
+                }
             }else {
                 req.getRequestDispatcher("WEB-INF/errorPage.jsp").forward(req, resp);
             }
