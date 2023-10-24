@@ -1,7 +1,7 @@
 package com.school.controller;
 
 import com.school.classes.Staff;
-import com.school.classes.StaffUtility;
+import com.school.classes.utility.StaffUtility;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -42,7 +42,7 @@ public class viewStaff extends HttpServlet {
             if (req.getParameter("role") != null) {
                 StaffUtility su = new StaffUtility();
                 String role = req.getParameter("role");
-                System.out.println(role);
+
                 try {
                     List<Staff> staffList = su.viewStaff(role);
                     req.setAttribute("staffList", staffList);

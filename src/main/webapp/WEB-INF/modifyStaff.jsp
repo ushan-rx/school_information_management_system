@@ -1,4 +1,6 @@
-<%--
+<%@ page import="java.util.HashMap" %>
+<%@ page import="java.util.Map" %>
+<%@ page import="com.school.classes.Staff" %><%--
   Created by IntelliJ IDEA.
   User: ushan
   Date: 10/8/2023
@@ -16,6 +18,10 @@
 
 <%
     response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+    HashMap<String,String> subjectlist = (HashMap<String, String>) request.getAttribute("subjectlist");
+
+    Staff st = (Staff) request.getAttribute("staff");
+
 %>
 
 <div class="wrapper">
@@ -55,24 +61,24 @@
                     </div>
                     <!-- /.card-header -->
                     <!-- form start -->
-                    <form action="manageStaff" method="post">
+                    <form action="manageStaff" method="post" name="staff">
                         <div class="card-body">
 
                             <div class="form-group">
                                 <label>First Name</label>
-                                <input class="form-control" type="text" placeholder="" id="fname" name="fname">
+                                <input class="form-control" type="text" placeholder="" id="fname" name="fname" value="<% out.print(st == null ? "" : st.getFname()); %>">
                             </div>
 
                             <div class="form-group">
                                 <label>Last Name</label>
-                                <input class="form-control" type="text" placeholder="" id="lname" name="lname">
+                                <input class="form-control" type="text" placeholder="" id="lname" name="lname" value="<% out.print(st == null ? "" : st.getLname()); %>">
                             </div>
 
                             <div class="form-group">
                                 <label>Date of Birth:</label>
                                 <div class="input-group date" id="reservationdate" data-target-input="nearest" >
                                     <input type="text" class="form-control datetimepicker-input"
-                                           data-target="#reservationdate"  name = "dob"/>
+                                           data-target="#reservationdate"  name = "dob" value="<% out.print(st == null ? "" : st.getDob()); %>"/>
                                     <div class="input-group-append" data-target="#reservationdate"
                                          data-toggle="datetimepicker">
                                         <div class="input-group-text"><i class="fa fa-calendar"></i></div>
@@ -95,7 +101,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fas fa-phone"></i></span>
                                     </div>
-                                    <input type="text" class="form-control" id="num" name="telno">
+                                    <input type="text" class="form-control" id="num" name="telno" value="<% out.print(st == null ? "" : st.getTelno()); %>">
                                 </div>
                                 <!-- /.input group -->
                             </div>
@@ -114,21 +120,26 @@
                                 <label>Subject</label>
                                 <select class="form-control" id="sub" name="sub">
                                     <option disabled="disabled" selected>Select</option>
-                                    <option value="SB001">sub1</option>
-                                    <option value="sub2">sub2</option>
+                                    <%
+                                        for (Map.Entry sub : subjectlist.entrySet()){
+                                            out.print(" <option value=\""+sub.getKey()+"\">"+sub.getValue()+"</option>");
+
+
+                                        }
+                                    %>
                                 </select>
                             </div>
 
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Email address</label>
                                 <input type="email" name="email" class="form-control" id="exampleInputEmail1"
-                                       placeholder="Enter email">
+                                       placeholder="Enter email" value="<% out.print(st == null ? "" : st.getEmail()); %>">
                             </div>
 
                             <div class="form-group">
                                 <label for="exampleInputPassword1">Password</label>
                                 <input type="password" class="form-control" id="exampleInputPassword1" name="pwd"
-                                       placeholder="Password" >
+                                       placeholder="Password" value="<% out.print(st == null ? "" : st.getPwd()); %>">
                             </div>
 
                         </div>
@@ -139,21 +150,21 @@
                                 <div class="col-lg-8">
                                     <div class="form-group">
                                         <label>Staff ID</label>
-                                        <input class="form-control" type="text" placeholder="Enter Id here to search" name="sid">
+                                        <input class="form-control" type="text" placeholder="Enter Id here to search" name="sid" value="<% out.print(st == null ? "" : st.getSid()); %>"<% out.print(st == null ? "" : "readonly"); %>>
                                     </div>
                                 </div>
                                 <div class="col-lg-4 py-4">
-                                    <button type="submit" class="btn btn-secondary my-2 w-50" name="search">Search</button>
+                                    <button type="submit" class="btn btn-secondary my-2 w-50" name="submit-btn" value="search">Search</button>
                                 </div>
                             </div>
 
                         </div>
 
                         <div class="card-footer">
-                            <button type="submit" class="btn bg-gradient-success mx-3 float-right btn-lg" name="submit-btn" value ="insert">Insert
+                            <button type="submit" class="btn bg-gradient-success mx-3 float-right btn-lg" name="submit-btn" value ="insert" onclick="return validation()">Insert
                             </button>
-                            <button type="submit" class="btn btn-primary mx-3 float-right btn-lg" name="submit-btn" value="update">Update</button>
-                            <button type="submit" class="btn bg-gradient-danger mx-3 float-right btn-lg" name="submit-btn" value="delete">Delete</button>
+                            <button type="submit" class="btn btn-primary mx-3 float-right btn-lg" name="submit-btn" value="update" onclick="return validation()">Update</button>
+                            <button type="submit" class="btn bg-gradient-danger mx-3 float-right btn-lg" name="submit-btn" value="delete" onclick=" return search_delete()" >Delete</button>
                         </div>
                     </form>
                 </div>
@@ -163,6 +174,7 @@
         </div>
     </div>
     <%--    include footer--%>
+
     <c:import url="/WEB-INF/includes/footer.jsp"/>
     <script>
         document.getElementById("ams").classList.add("active");
@@ -179,7 +191,7 @@
             });
         })
     </script>
-
+        <script src="<c:url value='/js/StaffValidation.js'/>"> </script>
 </body>
 
 
