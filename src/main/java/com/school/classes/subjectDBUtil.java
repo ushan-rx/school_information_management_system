@@ -125,4 +125,19 @@ public class subjectDBUtil {
         }
         return results;
     }
+
+    public Subject searchSubject(String sub_id) throws SQLException, ClassNotFoundException {
+        String sql = "SELECT * FROM subject WHERE sub_id = '"+sub_id+"' AND status = 1";
+        ResultSet rs = DB.search(sql);
+        if (rs.next()){
+            return new Subject(rs.getString("sub_id"), rs.getString("sub_name"),
+                    rs.getString("grade_id"), rs.getString("teaching_hrs"),
+                    rs.getString("exam_types"));
+
+        }
+        return null;
+    }
+
+
+
 }

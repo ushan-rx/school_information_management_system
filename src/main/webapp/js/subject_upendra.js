@@ -8,17 +8,19 @@ function validateform() {
         window.location.reload();
         return false;
 
+
+    } else if (document.getElementById('sub_grade').selectedIndex == 0) {
+        alert("Please select Grade");
+        window.location.reload();
+        return false;
+
+
     } else if (sub_hrs === null || sub_hrs === "" || sub_hrs === undefined) {
         alert("Teaching Hours can't be blank");
         window.location.reload();
         return false;
     } else if (!/^\d+$/.test(sub_hrs)) {
         alert("Teaching Hours must be a number.");
-        window.location.reload();
-        return false;
-
-    } else if (document.getElementById('sub_grade').selectedIndex == 0) {
-        alert("Please select Grade");
         window.location.reload();
         return false;
     }
