@@ -99,7 +99,15 @@ public class ModifyStudents extends HttpServlet {
 
                 }
             } else if (req.getParameter("submit-btn").equals("del")) {
-
+                if (req.getParameter("SID") != null) {
+                    String id = req.getParameter("SID");
+                    try {
+                        SU.delete(id);
+                        resp.sendRedirect("modifyStudents");
+                    } catch (SQLException | ClassNotFoundException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
             } else if (req.getParameter("submit-btn").equals("srch")) {
                 if (req.getParameter("SID") != null) {
                     String id = req.getParameter("SID");

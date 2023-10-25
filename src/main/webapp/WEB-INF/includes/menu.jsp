@@ -163,12 +163,6 @@
                 <p>View Subjects</p>
               </a>
             </li>
-            <li class="nav-item">
-              <a href="/tomcat10t/pages/forms/editors.html" class="nav-link" id="ars">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Add Results</p>
-              </a>
-            </li>
           </ul>
         </li>
         <li class="nav-item">

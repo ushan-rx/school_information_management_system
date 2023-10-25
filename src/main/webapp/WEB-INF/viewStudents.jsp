@@ -78,7 +78,7 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title">Fixed Header Table</h3>
+                                <h3 class="card-title"></h3>
 
                                 <div class="card-tools">
                                     <div class="input-group input-group-sm" style="width: 150px;">
@@ -98,6 +98,7 @@
                                 <table class="table table-head-fixed text-nowrap table-bordered">
                                     <thead>
                                     <tr>
+                                        <th>Student ID</th>
                                         <th>First Name</th>
                                         <th>Last Name</th>
                                         <th>Gender</th>
@@ -108,6 +109,7 @@
                                     <tbody>
                                         <c:forEach var="std" items='${stds}'>
                                             <tr>
+                                                <td>${std.SID}</td>
                                                 <td>${std.FName}</td>
                                                 <td>${std.LName}</td>
                                                 <td>${std.gender}</td>

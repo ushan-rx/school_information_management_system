@@ -19,6 +19,7 @@
 
 <%
     response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+
     List<Staff> staffs = (ArrayList<Staff>) request.getAttribute("staffList");
     pageContext.setAttribute("staffs", staffs);
 %>
@@ -62,6 +63,9 @@
                         </div>
                         <div class="col-md-2 mb-3 py-4">
                             <button class="btn btn-primary w-50 my-2 mx-5" type="submit">Search</button>
+                        </div>
+                        <div class="col-md-2 mb-3 py-4">
+                            <a class="btn btn-danger w-50 my-2 mx-1" href="viewStaff">Reset</a>
                         </div>
                     </div>
 

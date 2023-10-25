@@ -106,6 +106,16 @@ public class ManageExams extends HttpServlet {
                     }
                 }
             } else if (req.getParameter("submit-btn").equals("del")) {
+                if (req.getParameter("exId") != null) {
+                    String exId = req.getParameter("exId");
+                    try {
+                        eu.deleteExam(exId);
+                        resp.sendRedirect("manageExams");
+                    } catch (SQLException | ClassNotFoundException e) {
+                        throw new RuntimeException(e);
+                    }
+
+                }
 
             } else if (req.getParameter("submit-btn").equals("srch")) {
                 if (req.getParameter("exId") != null) {

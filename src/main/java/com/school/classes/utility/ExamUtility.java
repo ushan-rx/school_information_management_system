@@ -39,6 +39,11 @@ public class ExamUtility {
             DB.iud(upQuery);
     }
 
+    public void deleteExam(String exId) throws SQLException, ClassNotFoundException {
+        String sql = "UPDATE exam SET `status` = 0 WHERE `exam_id` = '"+exId+"'";
+        DB.iud(sql);
+    }
+
     public Exam searchExam(String id) throws SQLException, ClassNotFoundException {
         String sql = "SELECT * FROM exam WHERE exam_id = '"+id+"' AND status = 1";
         ResultSet rs = DB.search(sql);

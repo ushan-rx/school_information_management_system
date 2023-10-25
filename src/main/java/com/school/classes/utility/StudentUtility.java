@@ -51,6 +51,11 @@ public class StudentUtility {
         return null;
     }
 
+    public  void delete(String id) throws SQLException, ClassNotFoundException {
+        String sql = "UPDATE student SET `status` = 0 WHERE `sid` = '"+id+"'";
+        DB.iud(sql);
+    }
+
     public List<Student> viewStudent() throws SQLException, ClassNotFoundException {
         List<Student> results = new ArrayList<>();
         String get_query = "SELECT * FROM student WHERE status = 1";

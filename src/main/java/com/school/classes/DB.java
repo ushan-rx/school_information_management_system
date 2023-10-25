@@ -27,7 +27,7 @@ public class DB {
         if(connection == null){
             init_db();
         }
-        connection.createStatement().execute(query);
+        connection.createStatement().executeUpdate(query);
     }
 
 

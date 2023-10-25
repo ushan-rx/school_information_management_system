@@ -38,7 +38,7 @@
                         <!-- small box -->
                         <div class="small-box bg-warning">
                             <div class="inner">
-                                <h3>53<sup style="font-size: 20px"></sup></h3>
+                                <h3>5<sup style="font-size: 20px"></sup></h3>
                                 <p>Upcomming Exams</p>
                             </div>
                             <div class="icon">
@@ -52,7 +52,7 @@
                         <!-- small box -->
                         <div class="small-box bg-success">
                             <div class="inner">
-                                <h3>44</h3>
+                                <h3>10</h3>
                                 <p>Registered Students</p>
                             </div>
                             <div class="icon">
@@ -66,7 +66,7 @@
                         <!-- small box -->
                         <div class="small-box bg-primary">
                             <div class="inner">
-                                <h3>65</h3>
+                                <h3>2</h3>
                                 <p>Teachers</p>
                             </div>
                             <div class="icon">
@@ -87,16 +87,16 @@
                             <div class="card-header">
                                 <h3 class="card-title">
                                     <i class="fas fa-chart-pie mr-1"></i>
-                                    Sales
+                                    Registrations
                                 </h3>
                                 <div class="card-tools">
                                     <ul class="nav nav-pills ml-auto">
                                         <li class="nav-item">
                                             <a class="nav-link active" href="#revenue-chart" data-toggle="tab">Area</a>
                                         </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="#sales-chart" data-toggle="tab">Donut</a>
-                                        </li>
+<%--                                        <li class="nav-item">--%>
+<%--                                            <a class="nav-link" href="#sales-chart" data-toggle="tab">Donut</a>--%>
+<%--                                        </li>--%>
                                     </ul>
                                 </div>
                             </div><!-- /.card-header -->
@@ -120,14 +120,12 @@
                     <!-- right col (We are only adding the ID to make the widgets sortable)-->
                     <section class="col-lg-6 connectedSortable">
 
-
-
                         <!-- solid sales graph -->
                         <div class="card bg-gradient-info">
                             <div class="card-header border-0">
                                 <h3 class="card-title">
                                     <i class="fas fa-th mr-1"></i>
-                                    Sales Graph
+                                    Student Count
                                 </h3>
 
                                 <div class="card-tools">
@@ -142,38 +140,9 @@
                             <div class="card-body">
                                 <canvas class="chart" id="line-chart" style="min-height: 250px; height: 300px; max-height: 300px; max-width: 100%;"></canvas>
                             </div>
-                            <!-- /.card-body -->
-<%--                            <div class="card-footer bg-transparent">--%>
-<%--                                <div class="row">--%>
-<%--                                    <div class="col-4 text-center">--%>
-<%--                                        <input type="text" class="knob" data-readonly="true" value="20" data-width="60" data-height="60"--%>
-<%--                                               data-fgColor="#39CCCC">--%>
 
-<%--                                        <div class="text-white">Mail-Orders</div>--%>
-<%--                                    </div>--%>
-<%--                                    <!-- ./col -->--%>
-<%--                                    <div class="col-4 text-center">--%>
-<%--                                        <input type="text" class="knob" data-readonly="true" value="50" data-width="60" data-height="60"--%>
-<%--                                               data-fgColor="#39CCCC">--%>
-
-<%--                                        <div class="text-white">Online</div>--%>
-<%--                                    </div>--%>
-<%--                                    <!-- ./col -->--%>
-<%--                                    <div class="col-4 text-center">--%>
-<%--                                        <input type="text" class="knob" data-readonly="true" value="30" data-width="60" data-height="60"--%>
-<%--                                               data-fgColor="#39CCCC">--%>
-
-<%--                                        <div class="text-white">In-Store</div>--%>
-<%--                                    </div>--%>
-<%--                                    <!-- ./col -->--%>
-<%--                                </div>--%>
-<%--                                <!-- /.row -->--%>
-<%--                            </div>--%>
-                            <!-- /.card-footer -->
                         </div>
                         <!-- /.card -->
-
-
                         <!-- /.card -->
                         <!-- Map card -->
                         <div class="card bg-gradient-primary" style="display: none">
