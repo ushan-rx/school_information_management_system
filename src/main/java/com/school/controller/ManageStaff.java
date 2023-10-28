@@ -63,6 +63,7 @@ public class ManageStaff extends HttpServlet {
 
                     try {
                         su.insertStaff(fname, lname, dob, gender, telno, role, email, pwd, sub);
+
                     } catch (SQLException | ClassNotFoundException | NoSuchAlgorithmException e) {
                         throw new RuntimeException(e);
                     }

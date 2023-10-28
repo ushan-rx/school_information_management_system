@@ -71,8 +71,7 @@ public class ManageExams extends HttpServlet {
 
                     try {
                         eu.insertExam(name, grade, subject, date, time, duration, method, marks);
-                        req.setAttribute("op", "insert");
-                        req.getRequestDispatcher("WEB-INF/manageExams.jsp").forward(req, resp);
+                        resp.sendRedirect("manageExams");
                     } catch (SQLException | ClassNotFoundException e) {
                         req.getRequestDispatcher("WEB-INF/errorPage.jsp").forward(req, resp);
                         throw new RuntimeException(e);
@@ -98,8 +97,7 @@ public class ManageExams extends HttpServlet {
 
                     try {
                         eu.updateExam(ex_id, name, grade, subject, date, time, duration, method, marks);
-                        req.setAttribute("op", "update");
-                        req.getRequestDispatcher("WEB-INF/manageExams.jsp").forward(req, resp);
+                        resp.sendRedirect("manageExams");
                     } catch (SQLException | ClassNotFoundException e) {
                         req.getRequestDispatcher("WEB-INF/errorPage.jsp").forward(req, resp);
                         throw new RuntimeException(e);
