@@ -142,7 +142,7 @@ public class StaffUtility {
 
   public void  deleteStaff(String sid) throws SQLException, ClassNotFoundException {
 
-        String sql = "update staff set status = '0' where staff_id ='"+sid+"'";
+        String sql = "UPDATE staff SET `status` = 0 WHERE `staff_id` = '"+sid+"'";
 
          DB.iud(sql);
   }

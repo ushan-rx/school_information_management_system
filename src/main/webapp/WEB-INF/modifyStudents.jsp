@@ -62,24 +62,24 @@
                     </div>
                     <!-- /.card-header -->
                     <!-- form start -->
-                    <form  name="forms" action="modifyStudents" method="post">
+                    <form  name="forms" action="modifyStudents" method="post" onsubmit="return validating()">
                         <div class="card-body">
                             <div class="form-group">
                                 <label>First Name</label>
 <%--                                return --%>
-                                <input class="form-control" type="text" placeholder="" name="FName" onsubmit="validateform()" value="<% out.print(std == null ? "" : std.getFName()); %>">
+                                <input class="form-control check" type="text" placeholder="" name="FName"  value="<% out.print(std == null ? "" : std.getFName()); %>">
                             </div>
 
                             <div class="form-group">
                                 <label>Last Name</label>
 <%--                                --%>
-                                <input class="form-control" type="text" placeholder="" name="LName" onsubmit="validateform()" value="<% out.print(std == null ? "" : std.getLName()); %>">
+                                <input class="form-control check" type="text" placeholder="" name="LName" value="<% out.print(std == null ? "" : std.getLName()); %>">
                             </div>
 
                             <div class="form-group">
                                 <label>Date of Birth:</label>
-                                <div class="input-group date" id="reservationdate" data-target-input="nearest">
-                                    <input type="text" class="form-control datetimepicker-input"
+                                <div class="input-group date check" id="reservationdate" data-target-input="nearest">
+                                    <input type="text" class="form-control datetimepicker-input check"
                                            data-target="#reservationdate" name="DOB" value="<% out.print(std == null ? "" : std.getDOB()); %>"/>
                                     <div class="input-group-append" data-target="#reservationdate"
                                          data-toggle="datetimepicker">
@@ -90,7 +90,7 @@
 
                             <div class="form-group">
                                 <label>Gender</label>
-                                <select class="form-control" name="Gender">
+                                <select class="form-control check" name="Gender">
                                     <option disabled="disabled" selected>Select</option>
                                     <option value="M">Male</option>
                                     <option value="F">Female</option>
@@ -99,12 +99,12 @@
 
                             <div class="form-group">
                                 <label>City</label>
-                                <input class="form-control" type="text" placeholder="" name="City" value="<% out.print(std == null ? "" : std.getCity()); %>">
+                                <input class="form-control check" type="text" placeholder="" name="City" value="<% out.print(std == null ? "" : std.getCity()); %>">
                             </div>
 
                             <div class="form-group">
                                 <label>Grade</label>
-                                <select class="form-control" name="Grade">
+                                <select class="form-control check" name="Grade">
                                     <option value="1" <% if(std != null)
                                         out.print(std.getGrade() == 1 ? "selected" : "");%>>1</option>
                                     <option value="2" <% if(std != null)
@@ -121,7 +121,7 @@
 
                             <div class="form-group">
                                 <label>Class</label>
-                                <select class="form-control" name="Class">
+                                <select class="form-control check" name="Class">
                                     <option disabled="disabled" selected>Select</option>
                                     <%
                                         for(Map.Entry clss : cls.entrySet()){
@@ -133,7 +133,7 @@
 
                             <div class="form-group">
                                 <label>Guardian Name</label>
-                                <input class="form-control" type="text" placeholder="" name="GName" value="<% out.print(std == null ? "" : std.getGName()); %>">
+                                <input class="form-control check" type="text" placeholder="" name="GName" value="<% out.print(std == null ? "" : std.getGName()); %>">
                             </div>
 
                             <div class="form-group">
@@ -143,7 +143,7 @@
                                         <span class="input-group-text"><i class="fas fa-phone"></i></span>
                                     </div>
 <%--                                    --%>
-                                    <input type="text" class="form-control" name="GPhoneNum" onsubmit="phonenumber(inputtxt)" value="<% out.print(std == null ? "" : std.getGPhoneNum()); %>">
+                                    <input type="text" class="form-control check" id="phone" name="GPhoneNum" value="<% out.print(std == null ? "" : std.getGPhoneNum()); %>">
                                 </div>
                                 <!-- /.input group -->
 
@@ -157,21 +157,21 @@
                                 <div class="col-lg-8">
                                     <div class="form-group">
                                         <label>Student ID</label>
-                                        <input class="form-control" type="text" placeholder="Enter Id here to search" name="SID" value="<% out.print(std == null ? "" : std.getSID()); %>" <% out.print(std == null ? "" : "readonly"); %>>
+                                        <input class="form-control" id="SID"  type="text" placeholder="Enter Id here to search" name="SID" value="<% out.print(std == null ? "" : std.getSID()); %>" <% out.print(std == null ? "" : "readonly"); %>>
                                     </div>
                                 </div>
                                 <div class="col-lg-4 py-4">
-                                    <button type="submit" class="btn btn-secondary my-2 w-50" name = "submit-btn" value="srch">Search</button>
+                                    <button type="submit" class="btn btn-secondary my-2 w-50 submit-btn" name = "submit-btn" value="srch">Search</button>
                                 </div>
                             </div>
 
                         </div>
 
                         <div class="card-footer">
-                            <button type="submit" class="btn bg-gradient-success mx-3 float-right btn-lg"  name = "submit-btn" value="ins">Insert
+                            <button type="submit" class="btn bg-gradient-success mx-3 float-right btn-lg submit-btn"  name = "submit-btn" value="ins">Insert
                             </button>
-                            <button type="submit" class="btn btn-primary mx-3 float-right btn-lg" name = "submit-btn" value = "update">Update</button>
-                            <button type="submit" class="btn bg-gradient-danger mx-3 float-right btn-lg" name = "submit-btn" value="del">Delete</button>
+                            <button type="submit" class="btn btn-primary mx-3 float-right btn-lg submit-btn" name = "submit-btn" value = "update">Update</button>
+                            <button type="submit" class="btn bg-gradient-danger mx-3 float-right btn-lg submit-btn" name = "submit-btn" value="del">Delete</button>
                         </div>
                     </form>
                 </div>
@@ -190,7 +190,6 @@
         document.getElementById("mstud").parentElement.classList.add("menu-open");
     </script>
     <%--include js stuff--%>
-        <script src="<c:url value='/js/studenValidation.js'/>"></script>
     <c:import url="/WEB-INF/includes/jsContent.jsp"/>
     <script>
         $(function () {
@@ -200,7 +199,7 @@
             });
         })
     </script>
-
+        <script src="<c:url value='/js/studenValidation.js'/>"></script>
 </body>
 
 

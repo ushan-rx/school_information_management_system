@@ -1,9 +1,6 @@
 package com.school.controller;
 
-import com.school.classes.Exam;
 import com.school.classes.Staff;
-import com.school.classes.subjectDBUtil;
-import com.school.classes.utility.ExamUtility;
 import com.school.classes.utility.StaffUtility;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -104,15 +101,15 @@ public class ManageStaff extends HttpServlet {
                 resp.sendRedirect("manageStaff");
 
             } else if (req.getParameter("submit-btn").equals("delete")) {
-                String staff_id = req.getParameter("staff_id");
-                try {
-                    su.deleteStaff(staff_id);
-                } catch (SQLException e) {
-                    throw new RuntimeException(e);
-                } catch (ClassNotFoundException e) {
-                    throw new RuntimeException(e);
+                if (req.getParameter("sid") != null) {
+                    String staff_id = req.getParameter("sid");
+                    try {
+                        su.deleteStaff(staff_id);
+                    } catch (SQLException | ClassNotFoundException e) {
+                        throw new RuntimeException(e);
+                    }
+                    resp.sendRedirect("manageStaff");
                 }
-                resp.sendRedirect("manageStaff");
 
             } else if (req.getParameter("submit-btn").equals("search")) {
                 if (req.getParameter("sid") != null) {

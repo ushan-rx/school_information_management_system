@@ -62,16 +62,16 @@
                     </div>
                     <!-- /.card-header -->
                     <!-- form start -->
-                    <form action="manageExams" method="post">
+                    <form action="manageExams" method="post" onsubmit="return validateForm()">
                         <div class="card-body">
                             <div class="form-group">
                                 <label>Exam Name</label>
-                                <input class="form-control" type="text" placeholder="" name="exName" value="<% out.print(exam == null ? "" : exam.getName()); %>">
+                                <input class="form-control form-control1" type="text" placeholder="" name="exName" value="<% out.print(exam == null ? "" : exam.getName()); %>">
                             </div>
 
                             <div class="form-group">
                                 <label>Grade</label>
-                                <select class="form-control" name="grade" data-placeholder="">
+                                <select class="form-control form-control1" name="grade" data-placeholder="">
                                     <option disabled="disabled" value="0" selected>Select</option>
                                     <option value="1" <% if(exam != null)
                                         out.print(exam.getGrade().equals("1") ? "selected" : "");%>>1</option>
@@ -88,7 +88,7 @@
 
                             <div class="form-group">
                                 <label>Subject</label>
-                                <select class="form-control" name="subject">
+                                <select class="form-control form-control1" name="subject">
                                     <option disabled="disabled" value="0" selected>Select Subject</option>
                                     <%
                                         for(Map.Entry sub : subs.entrySet()){
@@ -106,7 +106,7 @@
                             <div class="form-group">
                                 <label>Date of Exam:</label>
                                 <div class="input-group date" id="reservationdate" data-target-input="nearest">
-                                    <input type="text" class="form-control datetimepicker-input"
+                                    <input type="text" class="form-control datetimepicker-input form-control1" id="dateInput"
                                            data-target="#reservationdate" name="date" value="<% out.print(exam == null ? "" : exam.getDate()); %>"/>
                                     <div class="input-group-append" data-target="#reservationdate"
                                          data-toggle="datetimepicker">
@@ -118,7 +118,7 @@
                             <div class="form-group">
                                 <label>Time of exam:</label>
                                 <div class="input-group date" id="timepicker" data-target-input="nearest">
-                                    <input type="text" class="form-control datetimepicker-input" data-target="#timepicker" name="time" value="<% out.print(exam == null ? "" : exam.getTime()); %>">
+                                    <input type="text" class="form-control datetimepicker-input form-control1" data-target="#timepicker" name="time" value="<% out.print(exam == null ? "" : exam.getTime()); %>">
                                     <div class="input-group-append" data-target="#timepicker" data-toggle="datetimepicker">
                                         <div class="input-group-text"><i class="far fa-clock"></i></div>
                                     </div>
@@ -128,17 +128,17 @@
 
                             <div class="form-group">
                                 <label>Time Duration</label>
-                                <input class="form-control" type="text" placeholder="" name="duration" value="<% out.print(exam == null ? "" : exam.getDuration()); %>">
+                                <input class="form-control numericInput form-control1" type="text" placeholder="" name="duration" value="<% out.print(exam == null ? "" : exam.getDuration()); %>">
                             </div>
 
                             <div class="form-group">
                                 <label>Total Marks</label>
-                                <input class="form-control" type="text" placeholder="" name="marks" value="<% out.print(exam == null ? "" : exam.getTotal_marks()); %>">
+                                <input class="form-control numericInput form-control1" type="text" placeholder="" name="marks" value="<% out.print(exam == null ? "" : exam.getTotal_marks()); %>">
                             </div>
 
                             <div class="form-group">
                                 <label>Exam Method</label>
-                                <select class="form-control" name="method">
+                                <select class="form-control form-control1" name="method">
                                     <option disabled="disabled" value="0" selected>Select Method</option>
                                     <option value="O">Online</option>
                                     <option value="P">Physical</option>
@@ -154,21 +154,21 @@
                                 <div class="col-lg-8">
                                     <div class="form-group">
                                         <label>Exam ID</label>
-                                        <input class="form-control" type="text" placeholder="Enter Id here to search" name="exId" value="<% out.print(exam == null ? "" : exam.getId()); %>" <% out.print(exam == null ? "" : "readonly"); %>>
+                                        <input class="form-control" type="text" placeholder="Enter Id here to search" id="exid" name="exId" value="<% out.print(exam == null ? "" : exam.getId()); %>" <% out.print(exam == null ? "" : "readonly"); %>>
                                     </div>
                                 </div>
                                 <div class="col-lg-4 py-4">
-                                    <button type="submit" class="btn btn-secondary my-2 w-50" name="submit-btn" value="srch">Search</button>
+                                    <button type="submit" class="btn btn-secondary my-2 w-50 submit-btn" name="submit-btn" value="srch">Search</button>
                                 </div>
                             </div>
 
                         </div>
 
                         <div class="card-footer">
-                            <button type="submit" class="btn bg-gradient-success mx-3 float-right btn-lg" name="submit-btn" value="ins">Insert
+                            <button type="submit" class="btn bg-gradient-success mx-3 float-right btn-lg submit-btn" name="submit-btn" value="ins">Insert
                             </button>
-                            <button type="submit" class="btn btn-primary mx-3 float-right btn-lg" name="submit-btn" value="update">Update</button>
-                            <button type="submit" class="btn bg-gradient-danger mx-3 float-right btn-lg " name="submit-btn" value="del">Delete</button>
+                            <button type="submit" class="btn btn-primary mx-3 float-right btn-lg submit-btn" name="submit-btn" value="update">Update</button>
+                            <button type="submit" class="btn bg-gradient-danger mx-3 float-right btn-lg submit-btn" name="submit-btn" value="del">Delete</button>
                         </div>
                     </form>
                 </div>
@@ -188,7 +188,9 @@
     </script>
     <%--include js stuff--%>
     <c:import url="/WEB-INF/includes/jsContent.jsp"/>
+        <script src="<c:url value='/js/examValidation.js'/>"></script>
     <script>
+
         $(function () {
             //Date picker
             $('#reservationdate').datetimepicker({

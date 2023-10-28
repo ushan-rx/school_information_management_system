@@ -61,24 +61,24 @@
                     </div>
                     <!-- /.card-header -->
                     <!-- form start -->
-                    <form action="manageStaff" method="post" name="staff">
+                    <form action="manageStaff" method="post" name="staff" onsubmit="return validation()">
                         <div class="card-body">
 
                             <div class="form-group">
                                 <label>First Name</label>
-                                <input class="form-control" type="text" placeholder="" id="fname" name="fname" value="<% out.print(st == null ? "" : st.getFname()); %>">
+                                <input class="form-control notNull" type="text" placeholder="" id="fname" name="fname" value="<% out.print(st == null ? "" : st.getFname()); %>">
                             </div>
 
                             <div class="form-group">
                                 <label>Last Name</label>
-                                <input class="form-control" type="text" placeholder="" id="lname" name="lname" value="<% out.print(st == null ? "" : st.getLname()); %>">
+                                <input class="form-control notNull" type="text" placeholder="" id="lname" name="lname" value="<% out.print(st == null ? "" : st.getLname()); %>">
                             </div>
 
                             <div class="form-group">
                                 <label>Date of Birth:</label>
                                 <div class="input-group date" id="reservationdate" data-target-input="nearest" >
-                                    <input type="text" class="form-control datetimepicker-input"
-                                           data-target="#reservationdate"  name = "dob" value="<% out.print(st == null ? "" : st.getDob()); %>"/>
+                                    <input type="text" class="form-control datetimepicker-input notNull"
+                                           data-target="#reservationdate" id="dateInput" name = "dob" value="<% out.print(st == null ? "" : st.getDob()); %>"/>
                                     <div class="input-group-append" data-target="#reservationdate"
                                          data-toggle="datetimepicker">
                                         <div class="input-group-text"><i class="fa fa-calendar"></i></div>
@@ -88,10 +88,12 @@
 
                             <div class="form-group">
                                 <label>Gender</label>
-                                <select class="form-control" id="gender" name="gender">
+                                <select class="form-control notNull" id="gender" name="gender">
                                     <option disabled="disabled" selected>Select</option>
-                                    <option value="M">Male</option>
-                                    <option value="F">Female</option>
+                                    <option value="M" <% if(st != null)
+                                        out.print(st.getGender().equals("M") ? "selected" : "");%>>Male</option>
+                                    <option value="F" <% if(st != null)
+                                        out.print(st.getGender().equals("F") ? "selected" : "");%>>Female</option>
                                 </select>
                             </div>
 
@@ -101,30 +103,35 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fas fa-phone"></i></span>
                                     </div>
-                                    <input type="text" class="form-control" id="num" name="telno" value="<% out.print(st == null ? "" : st.getTelno()); %>">
+                                    <input type="text" class="form-control notNull" id="phoneinput" name="telno" value="<% out.print(st == null ? "" : st.getTelno()); %>">
                                 </div>
                                 <!-- /.input group -->
                             </div>
 
                             <div class="form-group">
                                 <label>Role</label>
-                                <select class="form-control" id="role" name="role">
+                                <select class="form-control notNull" id="role" name="role">
                                     <option disabled="disabled" selected>Select</option>
-                                    <option value="adm">Admin</option>
-                                    <option value="sh">Sectional Head</option>
-                                    <option value="tch">Teacher</option>
+                                    <option value="adm" <% if(st != null)
+                                        out.print(st.getRole().equals("adm") ? "selected" : "");%>>Admin</option>
+                                    <option value="sh" <% if(st != null)
+                                        out.print(st.getRole().equals("sh") ? "selected" : "");%>>Sectional Head</option>
+                                    <option value="tch" <% if(st != null)
+                                        out.print(st.getRole().equals("tch") ? "selected" : "");%>>Teacher</option>
                                 </select>
                             </div>
                             <%--optional--%>
                             <div class="form-group">
                                 <label>Subject</label>
-                                <select class="form-control" id="sub" name="sub">
+                                <select class="form-control notNull" id="sub" name="sub">
                                     <option disabled="disabled" selected>Select</option>
                                     <%
                                         for (Map.Entry sub : subjectlist.entrySet()){
-                                            out.print(" <option value=\""+sub.getKey()+"\">"+sub.getValue()+"</option>");
-
-
+                                            if(st != null && sub.getKey().equals(st.getSub_id())){
+                                                out.print("<option value=\""+sub.getKey()+"\" selected>"+sub.getValue()+"</option>");
+                                            }else {
+                                                out.print(" <option value=\"" + sub.getKey() + "\">" + sub.getValue() + "</option>");
+                                            }
                                         }
                                     %>
                                 </select>
@@ -132,14 +139,14 @@
 
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Email address</label>
-                                <input type="email" name="email" class="form-control" id="exampleInputEmail1"
+                                <input type="email" name="email" class="form-control notNull" id="exampleInputEmail1"
                                        placeholder="Enter email" value="<% out.print(st == null ? "" : st.getEmail()); %>">
                             </div>
 
                             <div class="form-group">
                                 <label for="exampleInputPassword1">Password</label>
-                                <input type="password" class="form-control" id="exampleInputPassword1" name="pwd"
-                                       placeholder="Password" value="<% out.print(st == null ? "" : st.getPwd()); %>">
+                                <input type="password" class="form-control notNull" id="exampleInputPassword1" name="pwd"
+                                       placeholder="Password" >
                             </div>
 
                         </div>
@@ -150,21 +157,21 @@
                                 <div class="col-lg-8">
                                     <div class="form-group">
                                         <label>Staff ID</label>
-                                        <input class="form-control" type="text" placeholder="Enter Id here to search" name="sid" value="<% out.print(st == null ? "" : st.getSid()); %>"<% out.print(st == null ? "" : "readonly"); %>>
+                                        <input class="form-control" type="text" placeholder="Enter Id here to search" id="sid" name="sid" value="<% out.print(st == null ? "" : st.getSid()); %>"<% out.print(st == null ? "" : "readonly"); %>>
                                     </div>
                                 </div>
                                 <div class="col-lg-4 py-4">
-                                    <button type="submit" class="btn btn-secondary my-2 w-50" name="submit-btn" value="search">Search</button>
+                                    <button type="submit" class="btn btn-secondary my-2 w-50 submit-btn" name="submit-btn" value="search">Search</button>
                                 </div>
                             </div>
 
                         </div>
 
                         <div class="card-footer">
-                            <button type="submit" class="btn bg-gradient-success mx-3 float-right btn-lg" name="submit-btn" value ="insert" onclick="return validation()">Insert
+                            <button type="submit" class="btn bg-gradient-success mx-3 float-right btn-lg submit-btn" name="submit-btn" value ="insert" >Insert
                             </button>
-                            <button type="submit" class="btn btn-primary mx-3 float-right btn-lg" name="submit-btn" value="update" onclick="return validation()">Update</button>
-                            <button type="submit" class="btn bg-gradient-danger mx-3 float-right btn-lg" name="submit-btn" value="delete" onclick=" return search_delete()" >Delete</button>
+                            <button type="submit" class="btn btn-primary mx-3 float-right btn-lg submit-btn" name="submit-btn" value="update" >Update</button>
+                            <button type="submit" class="btn bg-gradient-danger mx-3 float-right btn-lg submit-btn" name="submit-btn" value="delete" >Delete</button>
                         </div>
                     </form>
                 </div>

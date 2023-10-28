@@ -1,4 +1,8 @@
-package com.school.classes;
+package com.school.classes.utility;
+
+import com.school.classes.DB;
+import com.school.classes.GenerateId;
+import com.school.classes.Subject;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

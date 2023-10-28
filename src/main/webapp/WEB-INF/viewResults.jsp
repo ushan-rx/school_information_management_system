@@ -157,7 +157,7 @@
   <c:import url="/WEB-INF/includes/footer.jsp"/>
 </div>
 <script>
-  document.getElementById("vex").classList.add("active");
+  document.getElementById("vrs").classList.add("active");
   document.getElementById("mex").classList.add("active");
   document.getElementById("mex").parentElement.classList.add("menu-open");
 </script>
