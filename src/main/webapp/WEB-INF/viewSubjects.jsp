@@ -65,7 +65,7 @@
                             </select>
                         </div>
                         <div class="col-md-2 mb-3 py-4">
-                            <button class="btn btn-primary w-50 my-2 mx-5" type="submit">Search</button>
+                            <button class="btn btn-primary w-50 my-2 mx-5" type="submit"  onclick="scrh_del()">Search</button>
                         </div>
                     </div>
 
