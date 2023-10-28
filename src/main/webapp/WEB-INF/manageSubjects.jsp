@@ -99,17 +99,32 @@
                                 <label>Types of Tests</label>
                                 <div class="custom-control custom-checkbox">
                                     <input class="custom-control-input" name="sub_test" type="checkbox"
-                                           id="customCheckbox2" value="1">
+                                           id="customCheckbox2" value="1" <% if(subject != null){
+                                               if(subject.getExam_types().contains("1")){
+                                                   out.print("checked");
+                                                   }
+
+                                           }%>>
                                     <label for="customCheckbox2" class="custom-control-label">Assignments</label>
                                 </div>
                                 <div class="custom-control custom-checkbox">
                                     <input class="custom-control-input" name="sub_test" type="checkbox"
-                                           id="customCheckbox1" value="2">
+                                           id="customCheckbox1" value="2" <% if(subject != null){
+                                               if(subject.getExam_types().contains("2")){
+                                                   out.print("checked");
+                                                   }
+
+                                           }%>>
                                     <label for="customCheckbox1" class="custom-control-label">Practicals</label>
                                 </div>
                                 <div class="custom-control custom-checkbox">
                                     <input class="custom-control-input" name="sub_test" type="checkbox"
-                                           id="customCheckbox3" checked="" value="3">
+                                           id="customCheckbox3" checked="" value="3" <% if(subject != null){
+                                               if(subject.getExam_types().contains("3")){
+                                                   out.print("checked");
+                                                   }
+
+                                           }%>>
                                     <label for="customCheckbox3" class="custom-control-label">Term Test</label>
                                 </div>
                             </div>
@@ -123,12 +138,12 @@
                                     <div class="form-group">
                                         <label>Subject ID</label>
                                         <input name="sub_id" class="form-control" type="text"
-                                               placeholder="Enter Id here to search">
+                                               placeholder="Enter Id here to search" value="<% out.print(subject == null ? "" : subject.getSub_id()); %>" >
                                     </div>
                                 </div>
                                 <div class="col-lg-4 py-4">
                                     <button type="submit" class="btn btn-secondary my-2 w-50" name="iuds" value="search"
-                                            onclick="scrh_del()">Search
+                                            onclick="scrh_del()" >Search
                                     </button>
                                 </div>
                             </div>
