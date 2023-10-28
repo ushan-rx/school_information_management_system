@@ -2,7 +2,7 @@ package com.school.controller;
 
 import com.school.classes.Exam;
 import com.school.classes.Subject;
-import com.school.classes.subjectDBUtil;
+import com.school.classes.utility.subjectDBUtil;
 import com.school.classes.utility.ExamUtility;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;

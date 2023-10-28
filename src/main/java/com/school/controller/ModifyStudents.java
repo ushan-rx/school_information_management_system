@@ -63,6 +63,7 @@ public class ModifyStudents extends HttpServlet {
 
                     try {
                         SU.insert(FirstName, LastName, DateOfBirth, Gender, City, Class, GurdianName, GurdianPhone, Grade);
+                        resp.sendRedirect("modifyStudents");
                     } catch (SQLException | ClassNotFoundException e) {
                         req.getRequestDispatcher("WEB-INF/errorPage.jsp").forward(req, resp);
                         throw new RuntimeException(e);
@@ -91,7 +92,7 @@ public class ModifyStudents extends HttpServlet {
 
                     try {
                         SU.update(SID, FirstName, LastName, DateOfBirth, Gender, City, Class, GurdianName, GurdianPhone, Grade);
-
+                        resp.sendRedirect("modifyStudents");
                     } catch (SQLException | ClassNotFoundException e) {
                         req.getRequestDispatcher("WEB-INF/errorPage.jsp").forward(req, resp);
                         throw new RuntimeException(e);
